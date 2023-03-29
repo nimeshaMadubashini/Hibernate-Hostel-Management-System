@@ -4,5 +4,5 @@ import lk.ijse.hibernate.bo.SuperBO;
 import lk.ijse.hibernate.dto.UserDto;
 
 public interface UserLoginBO extends SuperBO {
-    boolean verifyUser(UserDto dto)throws Exception;
+    boolean verifyUser(String userName,String password)throws Exception;
 }

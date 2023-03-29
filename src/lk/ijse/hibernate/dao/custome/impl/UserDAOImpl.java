@@ -37,23 +37,27 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean verifyUser(User entity)throws Exception {
+    public boolean verifyUser(String username,String passWord)throws Exception {
+        User user=null;
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         try {
             String hql="FROM User WHERE userName=:userName AND password=:password";
-            Query query = session.createQuery(hql);
-            query.setParameter("userName", entity.getUserName());
-            query.setParameter("password", entity.getPassword());
-            query.uniqueResult();
+            user = (User) session.createQuery(hql).setParameter("userName", username)
+                    .setParameter("password",passWord).uniqueResult();
+           /* query.setParameter("userName", entity.getUserName());
+            query.setParameter("password", entity.getPassword());*/
+            if(user!=null &&(user.getUserName().equals(username) && user.getPassword().equals(passWord))){
+                return true;
+            }
             transaction.commit();
             session.close();
-            return true;
         } catch (Exception ex) {
             transaction.rollback();
             session.close();
             ex.printStackTrace();
-            return false;
+
         }
+        return false;
     }
 }

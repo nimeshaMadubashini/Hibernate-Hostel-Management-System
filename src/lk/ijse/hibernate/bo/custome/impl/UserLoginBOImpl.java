@@ -8,8 +8,9 @@ import lk.ijse.hibernate.entity.User;
 
 public class UserLoginBOImpl implements UserLoginBO {
     UserDAO userDAO= (UserDAO) DAOFactory.getBoFactory().getDo(DAOFactory.DOType.User);
+
     @Override
-    public boolean verifyUser(UserDto dto) throws Exception {
-        return userDAO.verifyUser(new User(dto.getNic(), dto.getName(),dto.getUserName(), dto.getPassword()));
+    public boolean verifyUser(String userName, String password) throws Exception {
+        return userDAO.verifyUser(userName,password);
     }
 }
