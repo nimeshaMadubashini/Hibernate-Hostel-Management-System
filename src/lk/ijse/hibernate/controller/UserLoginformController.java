@@ -82,6 +82,7 @@ String password;
                     String title = "Login Successful";
                     String text = "Hey, Login Successful";
                     Notification.showNotification(url, title, text);
+                    Navigation.navigation(Routes.HOME,pane);
                 } else {
                     String url = "/lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
                     String title = "Login UnSuccessful";

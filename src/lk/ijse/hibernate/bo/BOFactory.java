@@ -1,8 +1,7 @@
 package lk.ijse.hibernate.bo;
 
 
-import lk.ijse.hibernate.bo.custome.impl.UserBOImpl;
-import lk.ijse.hibernate.bo.custome.impl.UserLoginBOImpl;
+import lk.ijse.hibernate.bo.custome.impl.*;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -18,7 +17,7 @@ public class BOFactory {
     }
 
     public enum BOType {
-        UserSignUp,UserLogin
+        UserSignUp,UserLogin,STUDENT,ROOM,RESERVATION
     }
     public SuperBO getBO(BOType boType){
         switch (boType){
@@ -26,12 +25,12 @@ public class BOFactory {
                return (SuperBO) new UserBOImpl();
             case UserLogin:
                 return (SuperBO)new UserLoginBOImpl();
-//            case BOOKSUPPLYDETAIL1:
-//                return (SuperBO) new BookSupplyDetailBOImpl();
-//            case CATEGORY1:
-//                return (SuperBO) new ManageBookCategoryBOIImpl();
-//            case EXPENDITURE1:
-//                return (SuperBO) new ManageOtherExpenditureBOImpl();
+            case STUDENT:
+        return (SuperBO) new StudentBOImpl();
+            case ROOM:
+               return (SuperBO) new RoomBOImpl();
+            case RESERVATION:
+              return (SuperBO) new ReservationBOImpl();
 //            case GRANTER1:
 //                return (SuperBO) new ManageGranterBOImpl();
 //            case INSURENCE1:

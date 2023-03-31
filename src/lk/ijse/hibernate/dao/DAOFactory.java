@@ -1,6 +1,9 @@
 package lk.ijse.hibernate.dao;
 
 import lk.ijse.hibernate.dao.SuperDAO;
+import lk.ijse.hibernate.dao.custome.impl.ReservationDAOImpl;
+import lk.ijse.hibernate.dao.custome.impl.RoomDAOImpl;
+import lk.ijse.hibernate.dao.custome.impl.StudentDAOImpl;
 import lk.ijse.hibernate.dao.custome.impl.UserDAOImpl;
 
 
@@ -18,21 +21,19 @@ public class DAOFactory {
     }
 
     public enum DOType {
-        User
+        User,STUDENT,ROOM,RESERVATON
 
     }
     public SuperDAO getDo(DAOFactory.DOType doType){
         switch (doType){
             case User:
                 return (SuperDAO) new UserDAOImpl();
-          /*  case BOOKSUPPLYDETAIL:
-                return (SuperDAO) new BookSuplyDetailDAOImpl();
-            case CATEGORY:
-                return (SuperDAO) new CategoryDAOImpl();
-            case EXPENDITURE:
-                return (SuperDAO) new ExpenditureDAOImpl();
-            case GRANTER:
-                return (SuperDAO) new GranterDAOImpl();*/
+            case ROOM:
+                return (SuperDAO) new RoomDAOImpl();
+            case RESERVATON:
+                return (SuperDAO) new ReservationDAOImpl();
+            case STUDENT:
+                return (SuperDAO) new StudentDAOImpl();
 
         }
         return null;

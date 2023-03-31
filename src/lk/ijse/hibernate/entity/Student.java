@@ -16,8 +16,8 @@ public class Student {
  private    String contactNum;
   private   LocalDate dob;
   private   String gender;
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "student")
-     private ArrayList<Reservation> studentList=new ArrayList<>();
+  /*  @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "student")
+     private ArrayList<Reservation> studentList=new ArrayList<>();*/
 
     public Student(String id, String name, String address, String contactNum, LocalDate dob, String gender) {
         this.id = id;
@@ -28,7 +28,7 @@ public class Student {
         this.gender = gender;
     }
 
-    public Student(String id, String name, String address, String contactNum, LocalDate dob, String gender, ArrayList<Reservation> studentList) {
+   /* public Student(String id, String name, String address, String contactNum, LocalDate dob, String gender, ArrayList<Reservation> studentList) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -36,7 +36,7 @@ public class Student {
         this.dob = dob;
         this.gender = gender;
         this.studentList = studentList;
-    }
+    }*/
 
     public Student() {
 
@@ -90,11 +90,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public ArrayList<Reservation> getStudentList() {
+   /* public ArrayList<Reservation> getStudentList() {
         return studentList;
     }
 
     public void setStudentList(ArrayList<Reservation> studentList) {
         this.studentList = studentList;
-    }
+    }*/
 }

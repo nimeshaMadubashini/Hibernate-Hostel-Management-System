@@ -40,7 +40,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="31.0" fitWidth="25.0" layoutX="406.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assest/icons8-name-60.png" />
