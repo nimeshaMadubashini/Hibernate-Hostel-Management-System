@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" prefHeight="532.0" prefWidth="682.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.controller.HomePageFormController">
+   <children>
+      <ImageView fitHeight="401.0" fitWidth="572.0" layoutX="96.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assest/d61ebe4813d6d65d878b750ac26982ae.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.07" contrast="-0.05" hue="-0.55" />
+         </effect>
+      </ImageView>
+      <Text fill="#321268" layoutX="-17.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D24 Hostel" textAlignment="RIGHT" wrappingWidth="168.13671875">
+         <font>
+            <Font name="Franklin Gothic Medium" size="30.0" />
+         </font>
+      </Text>
+      <JFXButton contentDisplay="TOP" layoutX="-2.0" layoutY="150.0" onAction="#addSudentOnAction" prefHeight="72.0" prefWidth="59.0" text="Student" textAlignment="RIGHT">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/person_add_FILL0_wght400_GRAD0_opsz48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton contentDisplay="TOP" layoutX="-2.0" layoutY="249.0" onAction="#roomOnAction" prefHeight="68.0" prefWidth="59.0" text="Room" textAlignment="RIGHT">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/king_bed_FILL0_wght400_GRAD0_opsz48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton contentDisplay="TOP" layoutX="-2.0" layoutY="344.0" onAction="#keyOnAction" prefHeight="68.0" prefWidth="59.0" text="Key" textAlignment="RIGHT">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/checklist_FILL0_wght400_GRAD0_opsz48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton contentDisplay="TOP" layoutX="1.0" layoutY="442.0" onAction="#userOnaction" prefHeight="61.0" prefWidth="51.0" text="User" textAlignment="RIGHT">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/account_box_FILL0_wght400_GRAD0_opsz48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton contentDisplay="TOP" layoutX="-2.0" layoutY="61.0" onAction="#homeOnAtion" prefHeight="72.0" prefWidth="59.0" text="Home" textAlignment="RIGHT">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/icons8-home-48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

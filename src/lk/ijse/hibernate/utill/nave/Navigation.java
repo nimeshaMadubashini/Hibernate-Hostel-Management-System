@@ -24,6 +24,26 @@ public class Navigation {
                 window.setTitle("SignIn Page");
                 initUI("UserLoginform.fxml");
                 break;
+            case STUDENT:
+                window.setTitle("Student Page");
+                initUI("StudentManageForm.fxml");
+                break;
+            case ROOM:
+                window.setTitle("Room Page");
+                initUI("RoomManageForm.fxml");
+                break;
+            case HOME:
+                window.setTitle("Home Page");
+                initUI("homePageForm.fxml");
+                break;
+            case KEY:
+                window.setTitle("Reservtion Page");
+                initUI("RoomReservationManageForm.fxml");
+                break;
+            case USER:
+                window.setTitle("User Edit Page");
+                initUI("UserEditForm.fxml");
+                break;
             default:
                 new Alert(Alert.AlertType.ERROR,"Not Suitable UI Found!").show();
         }
