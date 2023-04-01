@@ -3,19 +3,19 @@ package lk.ijse.hibernate.dto;
 import java.time.LocalDate;
 
 public class StudentDTO {
-    private String StudentId;
+    private String student_id;
     private String name;
     private String address;
-    private String ContactNo;
+    private String contact_no;
     private LocalDate dob;
     private String gender;
 
-    public StudentDTO(String studentId, String name, String address, String contactNo, LocalDate dob, String gender) {
+    public StudentDTO(String student_id, String name, String address, String contact_no, LocalDate dob, String gender) {
 
-        StudentId = studentId;
+       this. student_id = student_id;
         this.name = name;
         this.address = address;
-        ContactNo = contactNo;
+      this.contact_no = contact_no;
         this.dob = dob;
         this.gender = gender;
     }
@@ -23,12 +23,12 @@ public class StudentDTO {
     public StudentDTO() {
     }
 
-    public String getStudentId() {
-        return StudentId;
+    public String getStudent_id() {
+        return student_id;
     }
 
-    public void setStudentId(String studentId) {
-        StudentId = studentId;
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id;
     }
 
     public String getName() {
@@ -47,12 +47,12 @@ public class StudentDTO {
         this.address = address;
     }
 
-    public String getContactNo() {
-        return ContactNo;
+    public String getContact_no() {
+        return contact_no;
     }
 
-    public void setContactNo(String contactNo) {
-        ContactNo = contactNo;
+    public void setContact_no(String contact_no) {
+        this.contact_no = contact_no;
     }
 
     public LocalDate getDob() {

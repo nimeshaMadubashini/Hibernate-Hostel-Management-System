@@ -3,22 +3,29 @@ package lk.ijse.hibernate.controller;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hibernate.bo.BOFactory;
 import lk.ijse.hibernate.bo.custome.StudentBO;
 import lk.ijse.hibernate.dto.Notification;
 import lk.ijse.hibernate.dto.StudentDTO;
+import lk.ijse.hibernate.entity.Student;
 import lk.ijse.hibernate.utill.nave.Navigation;
 import lk.ijse.hibernate.utill.nave.Routes;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class StudentManageFormController {
     @FXML
@@ -50,31 +57,46 @@ public class StudentManageFormController {
     private Label lblContact;
 
     @FXML
-    private TableView<?> tblView;
+    private TableView<StudentDTO> tblView;
 
     @FXML
-    private TableColumn<?, ?> tblcolId;
+    private TableColumn tblcolId;
 
     @FXML
-    private TableColumn<?, ?> colname;
+    private TableColumn colname;
 
     @FXML
-    private TableColumn<?, ?> colAdd;
+    private TableColumn colAdd;
 
     @FXML
-    private TableColumn<?, ?> colContctNum;
+    private TableColumn colContctNum;
 
     @FXML
-    private TableColumn<?, ?> colDob;
+    private TableColumn colDob;
 
     @FXML
-    private TableColumn<?, ?> colGender;
+    private TableColumn colGender;
     @FXML
     private JFXRadioButton rdbMale;
 
     @FXML
     private JFXRadioButton rdbFemale;
     StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.STUDENT);
+    int myIndex;
+
+    public void initialize() {
+
+        try {
+            table();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     void addOnAction(ActionEvent event) {
@@ -89,10 +111,10 @@ public class StudentManageFormController {
         } else if (rdbMale.isSelected()) {
             gender = rdbMale.getText();
         }
-        StudentDTO studentDTO=new StudentDTO(id,name,add,contact,dob,gender);
+        StudentDTO studentDTO = new StudentDTO(id, name, add, contact, dob, gender);
         try {
             boolean isAdd = studentBO.save(studentDTO);
-            if(isAdd){
+            if (isAdd) {
                 String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
                 String title = "Successful!";
                 String text = " User Account Create Successful";
@@ -104,6 +126,7 @@ public class StudentManageFormController {
                 txtContact.setText("");
                 rdbMale.setText("");
                 rdbFemale.setText("");
+                table();
             } else {
                 String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
                 String title = "UnSuccessful";
@@ -188,4 +211,40 @@ public class StudentManageFormController {
         Navigation.navigation(Routes.USER, pane);
     }
 
+    public void table() throws Exception {
+        List<StudentDTO> list = studentBO.loadAllStudent();
+        ObservableList<StudentDTO> observableList = FXCollections.observableArrayList();
+        for (StudentDTO s : list) {
+            observableList.add(new StudentDTO(s.getStudent_id(), s.getName(), s.getAddress(), s.getContact_no(), s.getDob(), s.getGender()));
+        }
+        tblView.setItems(observableList);
+        tblcolId.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        colname.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAdd.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colContctNum.setCellValueFactory(new PropertyValueFactory<>("contact_no"));
+        colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+
+        tblView.setRowFactory(tv -> {
+            TableRow<StudentDTO> myRow = new TableRow<>();
+            myRow.setOnMouseClicked(event ->
+            {
+                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+
+                    myIndex = tblView.getSelectionModel().getSelectedIndex();
+                    txtStudentId.setText(tblView.getItems().get(myIndex).getStudent_id());
+                    txtName.setText(tblView.getItems().get(myIndex).getName());
+                    txtAddress.setText(tblView.getItems().get(myIndex).getAddress());
+                    txtContact.setText(tblView.getItems().get(myIndex).getContact_no());
+                    txtdate.setValue(tblView.getItems().get(myIndex).getDob());
+                    rdbFemale.setText(tblView.getItems().get(myIndex).getGender());
+                    rdbMale.setText(tblView.getItems().get(myIndex).getGender());
+
+
+                }
+            });
+            return myRow;
+        });
+
+    }
 }

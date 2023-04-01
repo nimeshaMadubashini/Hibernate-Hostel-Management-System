@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="574.0" prefWidth="737.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.controller.StudentManageFormController">
+<AnchorPane fx:id="pane" prefHeight="575.0" prefWidth="748.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.controller.StudentManageFormController">
    <children>
       <Text fill="#321268" layoutX="284.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D24 Hostel - Manage Student" textAlignment="RIGHT" wrappingWidth="314.13671875">
          <font>
@@ -66,7 +66,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <AnchorPane layoutY="1.0" prefHeight="574.0" prefWidth="219.0" style="-fx-border-radius: 30; -fx-background-color: #D2CAE6;">
+      <AnchorPane layoutY="1.0" prefHeight="574.0" prefWidth="228.0" style="-fx-border-radius: 30; -fx-background-color: #D2CAE6;">
          <effect>
             <DropShadow />
          </effect>
@@ -98,20 +98,15 @@
             <JFXRadioButton fx:id="rdbFemale" layoutX="122.0" layoutY="372.0" text="Female" />
          </children>
       </AnchorPane>
-      <TableView fx:id="tblView" layoutX="236.0" layoutY="109.0" prefHeight="358.0" prefWidth="496.0">
+      <TableView fx:id="tblView" layoutX="247.0" layoutY="109.0" prefHeight="358.0" prefWidth="495.0">
         <columns>
-          <TableColumn fx:id="tblcolId" prefWidth="51.0" text="ID" />
-          <TableColumn fx:id="colname" prefWidth="98.0" text="Name" />
+          <TableColumn fx:id="tblcolId" prefWidth="60.0" text="ID" />
+          <TableColumn fx:id="colname" prefWidth="89.0" text="Name" />
             <TableColumn fx:id="colAdd" prefWidth="96.0" text="Address" />
             <TableColumn fx:id="colContctNum" prefWidth="96.0" text="Contanct_No" />
             <TableColumn fx:id="colDob" prefWidth="72.0" text="DOB" />
             <TableColumn fx:id="colGender" prefWidth="81.0" text="Gender" />
         </columns>
       </TableView>
-      <ImageView fitHeight="320.0" fitWidth="402.0" layoutX="276.0" layoutY="142.0" opacity="0.35" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assest/room.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

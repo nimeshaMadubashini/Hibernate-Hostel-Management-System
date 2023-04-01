@@ -8,27 +8,25 @@ import java.util.ArrayList;
 @Entity
 public class Student {
     @Id
-    @Column(name = "student_id")
-    private String id;
-  private   String name;
-   private String address;
-    @Column(name = "contact_no")
- private    String contactNum;
-  private   LocalDate dob;
-  private   String gender;
+    private String student_id;
+    private String name;
+    private String address;
+    private String contact_no;
+    private LocalDate dob;
+    private String gender;
   /*  @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "student")
      private ArrayList<Reservation> studentList=new ArrayList<>();*/
 
-    public Student(String id, String name, String address, String contactNum, LocalDate dob, String gender) {
-        this.id = id;
+    public Student(String student_id, String name, String address, String contact_no, LocalDate dob, String gender) {
+        this.student_id = student_id;
         this.name = name;
         this.address = address;
-        this.contactNum = contactNum;
+        this.contact_no = contact_no;
         this.dob = dob;
         this.gender = gender;
     }
 
-   /* public Student(String id, String name, String address, String contactNum, LocalDate dob, String gender, ArrayList<Reservation> studentList) {
+/* public Student(String id, String name, String address, String contactNum, LocalDate dob, String gender, ArrayList<Reservation> studentList) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -42,12 +40,21 @@ public class Student {
 
     }
 
-    public String getId() {
-        return id;
+
+    public String getStudent_id() {
+        return student_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id;
+    }
+
+    public String getContact_no() {
+        return contact_no;
+    }
+
+    public void setContact_no(String contact_no) {
+        this.contact_no = contact_no;
     }
 
     public String getName() {
@@ -66,13 +73,6 @@ public class Student {
         this.address = address;
     }
 
-    public String getContactNum() {
-        return contactNum;
-    }
-
-    public void setContactNum(String contactNum) {
-        this.contactNum = contactNum;
-    }
 
     public LocalDate getDob() {
         return dob;

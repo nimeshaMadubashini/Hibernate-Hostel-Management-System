@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 public class UserDAOImpl implements UserDAO {
     @Override
     public boolean save(User entity) throws Exception {
@@ -34,6 +36,11 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean delete(String s) throws Exception {
         return false;
+    }
+
+    @Override
+    public List<User> loadAll() throws Exception {
+        return null;
     }
 
     @Override

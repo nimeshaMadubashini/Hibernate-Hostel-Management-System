@@ -5,6 +5,9 @@ import lk.ijse.hibernate.entity.Student;
 import lk.ijse.hibernate.utill.session.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
     @Override
@@ -57,4 +60,16 @@ public class StudentDAOImpl implements StudentDAO {
             return false;
         }
     }
+    @Override
+    public List<Student> loadAll() throws Exception {
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "FROM Student";
+        Query query = session.createQuery(hql);
+        List<Student> list = query.list();
+        transaction.commit();
+        session.close();
+        return list;
+    }
+
 }
