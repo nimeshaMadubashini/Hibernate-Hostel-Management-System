@@ -41,4 +41,10 @@ public class StudentBOImpl implements StudentBO {
         return studentDTOList;
 
     }
+
+    @Override
+    public List<String> loadStudentId() throws Exception {
+        List<String> list=studentDAO.loadId();
+        return list;
+    }
 }

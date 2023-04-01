@@ -12,4 +12,5 @@ public interface StudentBO extends SuperBO {
 
     boolean delete(String id) throws Exception;
     List<StudentDTO> loadAllStudent() throws Exception;
+    public List<String> loadStudentId() throws Exception;
 }

@@ -1,5 +1,6 @@
 package lk.ijse.hibernate.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hibernate.bo.BOFactory;
 import lk.ijse.hibernate.bo.custome.StudentBO;
@@ -25,6 +27,7 @@ import lk.ijse.hibernate.utill.nave.Routes;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManageFormController {
@@ -58,7 +61,8 @@ public class StudentManageFormController {
 
     @FXML
     private TableView<StudentDTO> tblView;
-
+    @FXML
+    private JFXComboBox comboid;
     @FXML
     private TableColumn tblcolId;
 
@@ -85,7 +89,7 @@ public class StudentManageFormController {
     int myIndex;
 
     public void initialize() {
-
+loadStudentId();
         try {
             table();
 
@@ -210,7 +214,10 @@ public class StudentManageFormController {
     void userOnaction(ActionEvent event) throws IOException {
         Navigation.navigation(Routes.USER, pane);
     }
+    @FXML
+    void searchIdOnMouseClicked(MouseEvent event) {
 
+    }
     public void table() throws Exception {
         List<StudentDTO> list = studentBO.loadAllStudent();
         ObservableList<StudentDTO> observableList = FXCollections.observableArrayList();
@@ -246,5 +253,19 @@ public class StudentManageFormController {
             return myRow;
         });
 
+    }
+
+    private void  loadStudentId(){
+        ObservableList<String> observableList=FXCollections.observableArrayList();
+        try {
+            List<String> idList=studentBO.loadStudentId();
+
+            for (String id:idList) {
+                observableList.add(id);
+            }
+            comboid.setItems(observableList);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

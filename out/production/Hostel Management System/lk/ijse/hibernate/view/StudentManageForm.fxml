@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -98,7 +99,7 @@
             <JFXRadioButton fx:id="rdbFemale" layoutX="122.0" layoutY="372.0" text="Female" />
          </children>
       </AnchorPane>
-      <TableView fx:id="tblView" layoutX="247.0" layoutY="109.0" prefHeight="358.0" prefWidth="495.0">
+      <TableView fx:id="tblView" layoutX="239.0" layoutY="78.0" prefHeight="315.0" prefWidth="495.0">
         <columns>
           <TableColumn fx:id="tblcolId" prefWidth="60.0" text="ID" />
           <TableColumn fx:id="colname" prefWidth="89.0" text="Name" />
@@ -108,5 +109,6 @@
             <TableColumn fx:id="colGender" prefWidth="81.0" text="Gender" />
         </columns>
       </TableView>
+      <JFXComboBox fx:id="comboid" layoutX="389.0" layoutY="411.0" onMouseClicked="#searchIdOnMouseClicked" prefHeight="25.0" prefWidth="154.0" promptText="select Id" />
    </children>
 </AnchorPane>

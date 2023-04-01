@@ -71,5 +71,15 @@ public class StudentDAOImpl implements StudentDAO {
         session.close();
         return list;
     }
-
+    @Override
+public List<String> loadId() throws Exception{
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "SELECT student_id FROM Student ";
+        Query query = session.createQuery(hql);
+        List<String> list = query.list();
+        transaction.commit();
+        session.close();
+        return list;
+}
 }
