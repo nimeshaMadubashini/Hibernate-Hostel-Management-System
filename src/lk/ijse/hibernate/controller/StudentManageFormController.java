@@ -89,7 +89,7 @@ public class StudentManageFormController {
     int myIndex;
 
     public void initialize() {
-loadStudentId();
+        loadStudentId();
         try {
             table();
 
@@ -171,6 +171,12 @@ loadStudentId();
     }
 
     @FXML
+    void loqadOnAction(ActionEvent event) throws Exception {
+        comboid.setValue("");
+        table();
+    }
+
+    @FXML
     void homeOnAtion(ActionEvent event) throws IOException {
         Navigation.navigation(Routes.HOME, pane);
     }
@@ -214,10 +220,25 @@ loadStudentId();
     void userOnaction(ActionEvent event) throws IOException {
         Navigation.navigation(Routes.USER, pane);
     }
+
     @FXML
-    void searchIdOnMouseClicked(MouseEvent event) {
+    void searchIdOnMouseClicked(MouseEvent event) throws Exception {
+        String id = String.valueOf(comboid.getValue());
+        List<StudentDTO> list = studentBO.findStudent(id);
+        ObservableList<StudentDTO> observableList = FXCollections.observableArrayList();
+        for (StudentDTO s : list) {
+            observableList.add(new StudentDTO(s.getStudent_id(), s.getName(), s.getAddress(), s.getContact_no(), s.getDob(), s.getGender()));
+        }
+        tblView.setItems(observableList);
+        tblcolId.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        colname.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAdd.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colContctNum.setCellValueFactory(new PropertyValueFactory<>("contact_no"));
+        colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
     }
+
     public void table() throws Exception {
         List<StudentDTO> list = studentBO.loadAllStudent();
         ObservableList<StudentDTO> observableList = FXCollections.observableArrayList();
@@ -255,12 +276,12 @@ loadStudentId();
 
     }
 
-    private void  loadStudentId(){
-        ObservableList<String> observableList=FXCollections.observableArrayList();
+    private void loadStudentId() {
+        ObservableList<String> observableList = FXCollections.observableArrayList();
         try {
-            List<String> idList=studentBO.loadStudentId();
+            List<String> idList = studentBO.loadStudentId();
 
-            for (String id:idList) {
+            for (String id : idList) {
                 observableList.add(id);
             }
             comboid.setItems(observableList);

@@ -13,4 +13,5 @@ public interface CrudDao <T, ID> extends SuperDAO {
     boolean delete(ID id) throws Exception;
     public List<T> loadAll() throws Exception;
     List<ID> loadId() throws Exception;
+     T find(ID s) throws Exception;
 }

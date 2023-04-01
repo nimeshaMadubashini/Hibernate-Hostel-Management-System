@@ -82,4 +82,34 @@ public List<String> loadId() throws Exception{
         session.close();
         return list;
 }
+    @Override
+    public Student find(String s) throws Exception {
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String id = s;
+        String hql = "FROM Student  WHERE student_id = :search_id";
+        Query query = session.createQuery(hql);
+        query.setParameter("search_id", id);
+        List<Student> studentsList = query.list();
+        for (Student student : studentsList) {
+            return new Student(student.getStudent_id(),student.getName(),student.getAddress(),student.getContact_no(),student.getDob(),student.getGender());
+        }
+        transaction.commit();
+        session.close();
+        return null;
+
+    }
+    public List<Student> loadStudent(String s){
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String id = s;
+        String hql = "FROM Student  WHERE student_id = :search_id";
+        Query query = session.createQuery(hql);
+        query.setParameter("search_id", id);
+        List<Student> studentsList = query.list();
+        transaction.commit();
+        session.close();
+        return studentsList;
+    }
+
 }

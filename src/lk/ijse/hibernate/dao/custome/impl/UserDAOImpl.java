@@ -49,6 +49,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User find(String s) throws Exception {
+        return null;
+    }
+
+    @Override
     public boolean verifyUser(String username,String passWord)throws Exception {
         User user=null;
         Session session = SessionFactoryConfig.getInstance().getSession();

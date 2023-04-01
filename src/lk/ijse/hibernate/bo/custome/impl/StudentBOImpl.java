@@ -47,4 +47,23 @@ public class StudentBOImpl implements StudentBO {
         List<String> list=studentDAO.loadId();
         return list;
     }
+
+    @Override
+    public List<StudentDTO> findStudent(String id) throws Exception {
+        List<StudentDTO>studentDTOList =new ArrayList<>();
+        List<Student>list = studentDAO.loadStudent(id);
+        for (Student s:list
+        ) {
+            studentDTOList.add(new StudentDTO(s.getStudent_id(),s.getName(),s.getAddress(),s.getContact_no(),s.getDob(),s.getGender()));
+
+        }
+        return studentDTOList;
+    }
+
+   /* @Override
+    public StudentDTO findStudent(String s) throws Exception {
+        Student student=studentDAO.find(s);
+        return new StudentDTO(student.getStudent_id(),student.getName(),student.getAddress(),student.getContact_no(),
+                student.getDob(),student.getGender());
+    }*/
 }

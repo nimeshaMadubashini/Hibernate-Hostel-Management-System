@@ -76,10 +76,6 @@
             <JFXTextField fx:id="txtName" layoutX="20.0" layoutY="97.0" onKeyPressed="#nameOnKeyPress" onKeyReleased="#nameOnKeyRelease" prefHeight="25.0" prefWidth="181.0" promptText="Enter Student Name" />
             <JFXTextField fx:id="txtAddress" layoutX="20.0" layoutY="164.0" onKeyPressed="#addressOnKeyPress" onKeyReleased="#addOnKeyRelease" prefHeight="25.0" prefWidth="181.0" promptText="Enter Address" />
             <JFXDatePicker fx:id="txtdate" defaultColor="#1257c6" layoutX="20.0" layoutY="312.0" prefHeight="25.0" prefWidth="181.0" promptText="Select  Date of birth" />
-            <JFXButton layoutX="33.0" layoutY="438.0" onAction="#addOnAction" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: #7142F8; -fx-background-radius: 30;" text="Add" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></JFXButton>
             <JFXTextField fx:id="txtContact" layoutX="19.0" layoutY="237.0" onKeyPressed="#contactOnKeyPress" onKeyReleased="#contactOnKeyReleased" prefHeight="25.0" prefWidth="181.0" promptText="Enter Contact Number" />
             <JFXButton layoutX="33.0" layoutY="528.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: #F44336; -fx-background-radius: 30;" text="Delete" textFill="WHITE">
                <font>
@@ -97,6 +93,11 @@
             <Label fx:id="lblContact" layoutX="19.0" layoutY="270.0" prefHeight="17.0" prefWidth="181.0" textFill="RED" />
             <JFXRadioButton fx:id="rdbMale" layoutX="19.0" layoutY="372.0" text="Male" />
             <JFXRadioButton fx:id="rdbFemale" layoutX="122.0" layoutY="372.0" text="Female" />
+            <JFXButton layoutX="37.0" layoutY="443.0" onAction="#addOnAction" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: #7142F8; -fx-background-radius: 30;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <TableView fx:id="tblView" layoutX="239.0" layoutY="78.0" prefHeight="315.0" prefWidth="495.0">
@@ -109,6 +110,11 @@
             <TableColumn fx:id="colGender" prefWidth="81.0" text="Gender" />
         </columns>
       </TableView>
-      <JFXComboBox fx:id="comboid" layoutX="389.0" layoutY="411.0" onMouseClicked="#searchIdOnMouseClicked" prefHeight="25.0" prefWidth="154.0" promptText="select Id" />
+      <JFXComboBox fx:id="comboid" editable="true" focusColor="#3155c3" layoutX="288.0" layoutY="416.0" onMouseClicked="#searchIdOnMouseClicked" prefHeight="25.0" prefWidth="173.0" promptText=" select ID you want to select" unFocusColor="#6e1694" visibleRowCount="4" />
+      <JFXButton layoutX="546.0" layoutY="416.0" onAction="#loqadOnAction" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: #7142F8; -fx-background-radius: 30;" text="Load All" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
