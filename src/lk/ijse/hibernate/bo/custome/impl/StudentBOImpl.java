@@ -19,7 +19,7 @@ public class StudentBOImpl implements StudentBO {
 
     @Override
     public boolean update(StudentDTO dto) throws Exception {
-        return studentDAO.save(new Student(dto.getStudent_id(),dto.getName(),dto.getAddress(),
+        return studentDAO.update(new Student(dto.getStudent_id(),dto.getName(),dto.getAddress(),
                 dto.getContact_no(),dto.getDob(),dto.getGender()));
     }
 

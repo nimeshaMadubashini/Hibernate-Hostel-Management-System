@@ -121,7 +121,7 @@ public class StudentManageFormController {
             if (isAdd) {
                 String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
                 String title = "Successful!";
-                String text = " User Account Create Successful";
+                String text = " Student Add  Successful";
                 Notification.showNotification(url, title, text);
                 txtStudentId.setText("");
                 txtName.setText("");
@@ -134,7 +134,7 @@ public class StudentManageFormController {
             } else {
                 String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
                 String title = "UnSuccessful";
-                String text = "User Account Create UnSuccessful";
+                String text = "Student Add  UnSuccessful";
                 Notification.showNotification(url, title, text);
             }
 
@@ -167,7 +167,32 @@ public class StudentManageFormController {
 
     @FXML
     void deleteOnAction(ActionEvent event) {
-
+        String id = txtStudentId.getText();
+        try {
+            boolean isDelete = studentBO.delete(id);
+            if (isDelete) {
+                String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
+                String title = "Successful!";
+                String text = " Student Account delete Successful";
+                Notification.showNotification(url, title, text);
+                txtStudentId.setText("");
+                txtName.setText("");
+                txtdate.setValue(LocalDate.now());
+                txtAddress.setText("");
+                txtContact.setText("");
+                rdbMale.setText("");
+                rdbFemale.setText("");
+                table();
+                loadStudentId();
+            } else {
+                String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
+                String title = "UnSuccessful";
+                String text = "Student Account update UnSuccessful";
+                Notification.showNotification(url, title, text);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -213,7 +238,44 @@ public class StudentManageFormController {
 
     @FXML
     void updateOnAction(ActionEvent event) {
+        String id = txtStudentId.getText();
+        String name = txtName.getText();
+        String add = txtAddress.getText();
+        String contact = txtContact.getText();
+        LocalDate dob = txtdate.getValue();
+        String gender = null;
+        if (rdbFemale.isSelected()) {
+            gender = rdbFemale.getText();
+        } else if (rdbMale.isSelected()) {
+            gender = rdbMale.getText();
+        }
+        StudentDTO studentDTO = new StudentDTO(id, name, add, contact, dob, gender);
+        try {
+            boolean isUpdated=studentBO.update(studentDTO);
+            if (isUpdated) {
+                String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
+                String title = "Successful!";
+                String text = " Student Account Update Successful";
+                Notification.showNotification(url, title, text);
+                txtStudentId.setText("");
+                txtName.setText("");
+                txtdate.setValue(LocalDate.now());
+                txtAddress.setText("");
+                txtContact.setText("");
+                rdbMale.setText("");
+                rdbFemale.setText("");
+                table();
+                loadStudentId();
+            } else {
+                String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
+                String title = "UnSuccessful";
+                String text = "Student Account update UnSuccessful";
+                Notification.showNotification(url, title, text);
+            }
 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

@@ -31,17 +31,18 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean update(Student entity) throws Exception {
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        try {
-            session.update(entity);
-            transaction.commit();
-            session.close();
-            return true;
-        } catch (Exception ex) {
-            transaction.rollback();
-            session.close();
-            ex.printStackTrace();
-            return false;
-        }
+        String hql = "UPDATE Student SET name = :student_name , address = :address, contact_no = :contact_no, dob = :date,gender = :gender WHERE student_id = :student_id";
+        Query query = session.createQuery(hql);
+        query.setParameter("student_name", entity.getName());
+        query.setParameter("address", entity.getAddress());
+        query.setParameter("contact_no", entity.getContact_no());
+        query.setParameter("date", entity.getDob());
+        query.setParameter("gender", entity.getGender());
+        query.setParameter("student_id" ,entity.getStudent_id());
+        int rowCount = query.executeUpdate();
+        transaction.commit();
+        session.close();
+        return rowCount > 0 ? true : false;
     }
 
     @Override
