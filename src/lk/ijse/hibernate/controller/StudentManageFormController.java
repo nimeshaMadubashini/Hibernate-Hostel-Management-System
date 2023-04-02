@@ -128,9 +128,10 @@ public class StudentManageFormController {
                 txtdate.setValue(LocalDate.now());
                 txtAddress.setText("");
                 txtContact.setText("");
-                rdbMale.setText("");
-                rdbFemale.setText("");
+                rdbMale.setSelected(false);
+                rdbFemale.setSelected(false);
                 table();
+                loadStudentId();
             } else {
                 String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
                 String title = "UnSuccessful";
@@ -180,8 +181,8 @@ public class StudentManageFormController {
                 txtdate.setValue(LocalDate.now());
                 txtAddress.setText("");
                 txtContact.setText("");
-                rdbMale.setText("");
-                rdbFemale.setText("");
+                rdbMale.setSelected(false);
+                rdbFemale.setSelected(false);
                 table();
                 loadStudentId();
             } else {
@@ -262,8 +263,8 @@ public class StudentManageFormController {
                 txtdate.setValue(LocalDate.now());
                 txtAddress.setText("");
                 txtContact.setText("");
-                rdbMale.setText("");
-                rdbFemale.setText("");
+                rdbMale.setSelected(false);
+                rdbFemale.setSelected(false);
                 table();
                 loadStudentId();
             } else {
@@ -301,6 +302,23 @@ public class StudentManageFormController {
 
     }
 
+    @FXML
+    void comboKeyOnPress(KeyEvent event) throws Exception {
+        String id = String.valueOf(comboid.getValue());
+        List<StudentDTO> list = studentBO.findStudent(id);
+        ObservableList<StudentDTO> observableList = FXCollections.observableArrayList();
+        for (StudentDTO s : list) {
+            observableList.add(new StudentDTO(s.getStudent_id(), s.getName(), s.getAddress(), s.getContact_no(), s.getDob(), s.getGender()));
+        }
+        tblView.setItems(observableList);
+        tblcolId.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        colname.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAdd.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colContctNum.setCellValueFactory(new PropertyValueFactory<>("contact_no"));
+        colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+
+    }
     public void table() throws Exception {
         List<StudentDTO> list = studentBO.loadAllStudent();
         ObservableList<StudentDTO> observableList = FXCollections.observableArrayList();
@@ -327,9 +345,13 @@ public class StudentManageFormController {
                     txtAddress.setText(tblView.getItems().get(myIndex).getAddress());
                     txtContact.setText(tblView.getItems().get(myIndex).getContact_no());
                     txtdate.setValue(tblView.getItems().get(myIndex).getDob());
-                    rdbFemale.setText(tblView.getItems().get(myIndex).getGender());
-                    rdbMale.setText(tblView.getItems().get(myIndex).getGender());
 
+                 if( "Male".equals(tblView.getItems().get(myIndex).getGender()))
+                  {
+                      rdbMale.setSelected(true);
+                  } else if ( "Female".equals(tblView.getItems().get(myIndex).getGender())) {
+                     rdbFemale.setSelected(true);
+                 }
 
                 }
             });

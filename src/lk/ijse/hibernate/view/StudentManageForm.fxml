@@ -110,7 +110,7 @@
             <TableColumn fx:id="colGender" prefWidth="81.0" text="Gender" />
         </columns>
       </TableView>
-      <JFXComboBox fx:id="comboid" editable="true" focusColor="#3155c3" layoutX="288.0" layoutY="416.0" onMouseClicked="#searchIdOnMouseClicked" prefHeight="25.0" prefWidth="173.0" promptText=" select ID you want to select" unFocusColor="#6e1694" visibleRowCount="4" />
+      <JFXComboBox fx:id="comboid" editable="true" focusColor="#3155c3" layoutX="288.0" layoutY="416.0" onKeyPressed="#comboKeyOnPress" onMouseClicked="#searchIdOnMouseClicked" prefHeight="25.0" prefWidth="173.0" promptText=" select ID you want to select" unFocusColor="#6e1694" visibleRowCount="4" />
       <JFXButton layoutX="546.0" layoutY="416.0" onAction="#loqadOnAction" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: #353434; -fx-background-radius: 30;" text="Load All" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
