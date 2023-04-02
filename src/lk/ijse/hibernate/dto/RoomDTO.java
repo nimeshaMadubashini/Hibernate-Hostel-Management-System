@@ -1,29 +1,27 @@
 package lk.ijse.hibernate.dto;
 
 public class RoomDTO {
-    private String roomTypeId;
+    private String room_type_id;
     private String type;
-    private String keyMoney;
+    private String key_money;
     private int qty;
 
-
-    public RoomDTO(String roomTypeId, String type, String keyMoney, int qty) {
-        this.roomTypeId = roomTypeId;
+    public RoomDTO(String room_type_id, String type, String key_money, int qty) {
+        this.room_type_id = room_type_id;
         this.type = type;
-        this.keyMoney = keyMoney;
+        this.key_money = key_money;
         this.qty = qty;
     }
 
     public RoomDTO() {
-
     }
 
-    public String getRoomTypeId() {
-        return roomTypeId;
+    public String getRoom_type_id() {
+        return room_type_id;
     }
 
-    public void setRoomTypeId(String roomTypeId) {
-        this.roomTypeId = roomTypeId;
+    public void setRoom_type_id(String room_type_id) {
+        this.room_type_id = room_type_id;
     }
 
     public String getType() {
@@ -34,12 +32,12 @@ public class RoomDTO {
         this.type = type;
     }
 
-    public String getKeyMoney() {
-        return keyMoney;
+    public String getKey_money() {
+        return key_money;
     }
 
-    public void setKeyMoney(String keyMoney) {
-        this.keyMoney = keyMoney;
+    public void setKey_money(String key_money) {
+        this.key_money = key_money;
     }
 
     public int getQty() {

@@ -6,40 +6,32 @@ import java.util.ArrayList;
 @Entity
 public class Room {
     @Id
-    @Column(name = "room_type_id")
-    private String roomTypeId;
+    private String room_type_id;
     private String type;
-    @Column(name = "key_money")
-    private String keyMoney;
+    private String key_money;
     private int qty;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "room")
+   /* @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "room")
     private ArrayList<Reservation> roomList=new ArrayList<>();
+*/
 
-    public Room(String roomTypeId, String type, String keyMoney, int qty) {
-        this.roomTypeId = roomTypeId;
+    public Room(String room_type_id, String type, String key_money, int qty) {
+        this.room_type_id = room_type_id;
         this.type = type;
-        this.keyMoney = keyMoney;
+        this.key_money = key_money;
         this.qty = qty;
-    }
-
-    public Room(String roomTypeId, String type, String keyMoney, int qty, ArrayList<Reservation> roomList) {
-        this.roomTypeId = roomTypeId;
-        this.type = type;
-        this.keyMoney = keyMoney;
-        this.qty = qty;
-        this.roomList = roomList;
     }
 
     public Room() {
+
     }
 
-    public String getRoomTypeId() {
-        return roomTypeId;
+    public String getRoom_type_id() {
+        return room_type_id;
     }
 
-    public void setRoomTypeId(String roomTypeId) {
-        this.roomTypeId = roomTypeId;
+    public void setRoom_type_id(String room_type_id) {
+        this.room_type_id = room_type_id;
     }
 
     public String getType() {
@@ -50,12 +42,12 @@ public class Room {
         this.type = type;
     }
 
-    public String getKeyMoney() {
-        return keyMoney;
+    public String getKey_money() {
+        return key_money;
     }
 
-    public void setKeyMoney(String keyMoney) {
-        this.keyMoney = keyMoney;
+    public void setKey_money(String key_money) {
+        this.key_money = key_money;
     }
 
     public int getQty() {
@@ -64,13 +56,5 @@ public class Room {
 
     public void setQty(int qty) {
         this.qty = qty;
-    }
-
-    public ArrayList<Reservation> getRoomList() {
-        return roomList;
-    }
-
-    public void setRoomList(ArrayList<Reservation> roomList) {
-        this.roomList = roomList;
     }
 }
