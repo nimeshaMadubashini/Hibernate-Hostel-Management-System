@@ -17,7 +17,7 @@ public class BOFactory {
     }
 
     public enum BOType {
-        UserSignUp,UserLogin,STUDENT,ROOM,RESERVATION
+        UserSignUp,UserLogin,STUDENT,ROOM,RESERVATION,USEREDIT
     }
     public SuperBO getBO(BOType boType){
         switch (boType){
@@ -31,8 +31,8 @@ public class BOFactory {
                return (SuperBO) new RoomBOImpl();
             case RESERVATION:
               return (SuperBO) new ReservationBOImpl();
-//            case GRANTER1:
-//                return (SuperBO) new ManageGranterBOImpl();
+            case USEREDIT:
+                return (SuperBO) new UserEditBOImpl();
 //            case INSURENCE1:
 //                return (SuperBO) new ManageInsuranceBOImpl();
 //

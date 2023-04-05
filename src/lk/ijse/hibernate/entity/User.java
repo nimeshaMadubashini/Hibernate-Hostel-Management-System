@@ -21,6 +21,12 @@ private String password;
         this.password = password;
     }
 
+    public User(String nic, String userName, String password) {
+        this.nic = nic;
+        this.userName = userName;
+        this.password = password;
+    }
+
     public String getNic() {
         return nic;
     }

@@ -30,7 +30,18 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean update(User entity) throws Exception {
-        return false;
+
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "UPDATE User SET userName = :name, password = :password WHERE nic = :nic";
+        Query query = session.createQuery(hql);
+        query.setParameter("name", entity.getUserName());
+        query.setParameter("password", entity.getPassword());
+        query.setParameter("nic", entity.getNic());
+        int rowCount = query.executeUpdate();
+        transaction.commit();
+        session.close();
+        return rowCount > 0 ? true : false;
     }
 
     @Override

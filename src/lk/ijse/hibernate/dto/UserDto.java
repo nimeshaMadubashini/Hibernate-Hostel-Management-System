@@ -12,7 +12,11 @@ private String password;
         this.userName = userName;
         this.password = password;
     }
-
+    public UserDto(String nic, String userName, String password) {
+        this.nic = nic;
+        this.userName = userName;
+        this.password = password;
+    }
     public UserDto() {
     }
 
