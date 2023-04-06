@@ -14,8 +14,8 @@ public class Student {
     private String contact_no;
     private LocalDate dob;
     private String gender;
-  /*  @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "student")
-     private ArrayList<Reservation> studentList=new ArrayList<>();*/
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "student")
+     private ArrayList<Reservation> studentList=new ArrayList<>();
 
     public Student(String student_id, String name, String address, String contact_no, LocalDate dob, String gender) {
         this.student_id = student_id;

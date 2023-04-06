@@ -48,7 +48,7 @@
             <Image url="@../assest/visibility_FILL0_wght400_GRAD0_opsz48.png" />
          </image>
       </ImageView>
-      <JFXPasswordField fx:id="conformPassword" layoutX="489.0" layoutY="336.0" prefHeight="25.0" prefWidth="185.0" promptText="Conform Password" />
+      <JFXPasswordField fx:id="conformPassword" layoutX="489.0" layoutY="336.0" onKeyReleased="#confirmpswONKeyRelease" prefHeight="25.0" prefWidth="185.0" promptText="Conform Password" />
       <ImageView fitHeight="36.0" fitWidth="35.0" layoutX="446.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assest/icons8-secure-60.png" />

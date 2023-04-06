@@ -85,7 +85,7 @@ public class UserEditFormController {
 
     @FXML
     void addSudentOnAction(ActionEvent event) throws IOException {
-Navigation.navigation(Routes.STUDENT,pane);
+        Navigation.navigation(Routes.STUDENT, pane);
     }
 
     String password;
@@ -100,45 +100,48 @@ Navigation.navigation(Routes.STUDENT,pane);
         UserDto dto = new UserDto(nic, username, password);
         try {
             if (nicMatcher.matches()) {
-                    if (userNameMatcher.matches()) {
-                        if (passWordMatcher.matches()) {
-                            if (conpassword.equals(password) && confirmPsMatcher.matches()) {
-                                boolean isUpdate = usrEditBO.updateUser(dto);
-                                if (isUpdate) {
+                if (userNameMatcher.matches()) {
+                    if (passWordMatcher.matches()) {
+                        if (conpassword.equals(password) && confirmPsMatcher.matches()) {
+                            boolean isUpdate = usrEditBO.updateUser(dto);
+                            if (isUpdate) {
 
-                                    String url = "/lk/ijse/hibernate/assest/icons8-check-mark-48.png";
-                                    String title = "Update Successful";
-                                    String text = "Hey, Update Successful";
-                                    Notification.showNotification(url, title, text);
-
-                                }else{
+                                String url = "/lk/ijse/hibernate/assest/icons8-check-mark-48.png";
+                                String title = "Update Successful";
+                                String text = "Hey, Update Successful";
+                                Notification.showNotification(url, title, text);
+                                txtPassword.setText("");
+                                txtNic.setText("");
+                                txtUserName.setText("");
+                                conformPassword.setText("");
+                            } else {
                                 String url = "/lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
                                 String title = "Update UnSuccessful";
                                 String text = "Incorrect Nic";
                                 Notification.showNotification(url, title, text);
                             }
-                            } else {
-                                conformPassword.requestFocus();
-                                conformPassword.setFocusColor(Paint.valueOf("red"));
-                                llconfirmpsw.setText("Not Match password");
-                            }
                         } else {
-                            txtPassword.requestFocus();
-                            txtPassword.setFocusColor(Paint.valueOf("Red"));
-                            lblPassword.setText("invalid password");
+                            conformPassword.requestFocus();
+                            conformPassword.setFocusColor(Paint.valueOf("red"));
+                            llconfirmpsw.setText("Not Match password");
                         }
                     } else {
-                        txtUserName.requestFocus();
-                        txtUserName.setFocusColor(Paint.valueOf("Red"));
-                        lblusername.setText("invalid user name");
+                        txtPassword.requestFocus();
+                        txtPassword.setFocusColor(Paint.valueOf("Red"));
+                        lblPassword.setText("invalid password");
                     }
-        } else {
-            txtNic.requestFocus();
-            txtNic.setFocusColor(Paint.valueOf("Red"));
-            lblnic.setText("invalid staff id");
-        }
+                } else {
+                    txtUserName.requestFocus();
+                    txtUserName.setFocusColor(Paint.valueOf("Red"));
+                    lblusername.setText("invalid user name");
+                }
+            } else {
+                txtNic.requestFocus();
+                txtNic.setFocusColor(Paint.valueOf("Red"));
+                lblnic.setText("invalid staff id");
+            }
 
-    } catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
 
@@ -165,32 +168,34 @@ Navigation.navigation(Routes.STUDENT,pane);
             txtPassword.setFocusColor(Paint.valueOf("Red"));
             lblPassword.setText("invalid password");
         }
-        password=txtPassword.getText();
+        password = txtPassword.getText();
         txtPassword1.setText(password);
 
     }
-@FXML
-void confirmpswONKeyRelease(KeyEvent keyEvent){
-    llconfirmpsw.setText("");
-    conformPassword.setFocusColor(Paint.valueOf("Blue"));
-    Pattern confirmPasswordPattern = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8}$");
-    confirmPsMatcher = confirmPasswordPattern.matcher(conformPassword.getText());
 
-    if (!confirmPsMatcher.matches()) {
-        conformPassword.requestFocus();
-        conformPassword.setFocusColor(Paint.valueOf("Red"));
-        llconfirmpsw.setText("not match password");
+    @FXML
+    void confirmpswONKeyRelease(KeyEvent keyEvent) {
+        llconfirmpsw.setText("");
+        conformPassword.setFocusColor(Paint.valueOf("Blue"));
+        Pattern confirmPasswordPattern = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8}$");
+        confirmPsMatcher = confirmPasswordPattern.matcher(conformPassword.getText());
+
+        if (!confirmPsMatcher.matches()) {
+            conformPassword.requestFocus();
+            conformPassword.setFocusColor(Paint.valueOf("Red"));
+            llconfirmpsw.setText("not match password");
+        }
+
     }
 
-}
     @FXML
     void homeOnAtion(ActionEvent event) throws IOException {
-Navigation.navigation(Routes.HOME,pane);
+        Navigation.navigation(Routes.HOME, pane);
     }
 
     @FXML
     void keyOnAction(ActionEvent event) throws IOException {
-Navigation.navigation(Routes.ROOM,pane);
+        Navigation.navigation(Routes.ROOM, pane);
     }
 
     @FXML
@@ -203,12 +208,12 @@ Navigation.navigation(Routes.ROOM,pane);
 
     @FXML
     void roomOnAction(ActionEvent event) throws IOException {
-Navigation.navigation(Routes.ROOM,pane);
+        Navigation.navigation(Routes.ROOM, pane);
     }
 
     @FXML
     void showPasswordOnKeyRelease(KeyEvent event) {
-        password=txtPassword1.getText();
+        password = txtPassword1.getText();
         txtPassword.setText(password);
     }
 

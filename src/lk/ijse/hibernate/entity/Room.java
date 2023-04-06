@@ -11,9 +11,8 @@ public class Room {
     private String key_money;
     private int qty;
 
-   /* @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "room")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "room")
     private ArrayList<Reservation> roomList=new ArrayList<>();
-*/
 
     public Room(String room_type_id, String type, String key_money, int qty) {
         this.room_type_id = room_type_id;
