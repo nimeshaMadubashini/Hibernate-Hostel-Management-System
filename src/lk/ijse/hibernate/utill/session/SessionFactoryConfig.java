@@ -1,5 +1,6 @@
 package lk.ijse.hibernate.utill.session;
 
+import lk.ijse.hibernate.entity.Reservation;
 import lk.ijse.hibernate.entity.Room;
 import lk.ijse.hibernate.entity.Student;
 import lk.ijse.hibernate.entity.User;
@@ -15,7 +16,7 @@ private final SessionFactory sessionFactory;
         sessionFactory = new Configuration()
                 .mergeProperties(Utility.getProperties())
                 .addAnnotatedClass(User.class ).addAnnotatedClass(Student.class).
-        addAnnotatedClass(Room.class). buildSessionFactory();
+        addAnnotatedClass(Room.class).addAnnotatedClass(Reservation.class). buildSessionFactory();
     }
     public static SessionFactoryConfig getInstance(){
         return null==sessionFactoryConfig?sessionFactoryConfig=new SessionFactoryConfig():

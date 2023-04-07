@@ -73,8 +73,6 @@ public class UserDAOImpl implements UserDAO {
             String hql="FROM User WHERE userName=:userName AND password=:password";
             user = (User) session.createQuery(hql).setParameter("userName", username)
                     .setParameter("password",passWord).uniqueResult();
-           /* query.setParameter("userName", entity.getUserName());
-            query.setParameter("password", entity.getPassword());*/
             if(user!=null &&(user.getUserName().equals(username) && user.getPassword().equals(passWord))){
                 return true;
             }

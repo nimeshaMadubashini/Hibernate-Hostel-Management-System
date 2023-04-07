@@ -3,6 +3,7 @@ package lk.ijse.hibernate.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -15,7 +16,7 @@ public class Student {
     private LocalDate dob;
     private String gender;
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "student")
-     private ArrayList<Reservation> studentList=new ArrayList<>();
+     private List<Reservation> studentList=new ArrayList<>();
 
     public Student(String student_id, String name, String address, String contact_no, LocalDate dob, String gender) {
         this.student_id = student_id;
@@ -90,11 +91,11 @@ public class Student {
         this.gender = gender;
     }
 
-   /* public ArrayList<Reservation> getStudentList() {
+    public List<Reservation> getStudentList() {
         return studentList;
     }
 
-    public void setStudentList(ArrayList<Reservation> studentList) {
+    public void setStudentList(List<Reservation> studentList) {
         this.studentList = studentList;
-    }*/
+    }
 }

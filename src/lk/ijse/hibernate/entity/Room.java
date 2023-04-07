@@ -2,6 +2,7 @@ package lk.ijse.hibernate.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Room {
@@ -12,7 +13,7 @@ public class Room {
     private int qty;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "room")
-    private ArrayList<Reservation> roomList=new ArrayList<>();
+    private List<Reservation> roomList=new ArrayList<>();
 
     public Room(String room_type_id, String type, String key_money, int qty) {
         this.room_type_id = room_type_id;
@@ -56,4 +57,13 @@ public class Room {
     public void setQty(int qty) {
         this.qty = qty;
     }
+
+    public List<Reservation> getRoomList() {
+        return roomList;
+    }
+
+    public void setRoomList(List<Reservation> roomList) {
+        this.roomList = roomList;
+    }
 }
+

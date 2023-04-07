@@ -22,6 +22,7 @@ import lk.ijse.hibernate.utill.nave.Navigation;
 import lk.ijse.hibernate.utill.nave.Routes;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RoomManageFormController {
@@ -70,7 +71,19 @@ public class RoomManageFormController {
     private JFXComboBox comboid;
     RoomBO roomBO = (RoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ROOM);
     int myIndex;
+    public void initialize() {
+        loadRoomId();
+        try {
+            table();
 
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     @FXML
     void addOnAction(ActionEvent event) {
         String id = txtroomid.getText();

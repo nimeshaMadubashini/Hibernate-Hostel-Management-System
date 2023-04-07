@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.effect.ColorAdjust?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="532.0" prefWidth="682.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.controller.HomePageFormController">
+<AnchorPane fx:id="pane" prefHeight="575.0" prefWidth="748.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.controller.HomePageFormController">
    <children>
-      <ImageView fitHeight="401.0" fitWidth="572.0" layoutX="96.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="243.0" fitWidth="378.0" layoutX="363.0" layoutY="353.0" opacity="0.87" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assest/d61ebe4813d6d65d878b750ac26982ae.png" />
          </image>
-         <effect>
-            <ColorAdjust brightness="0.07" contrast="-0.05" hue="-0.55" />
-         </effect>
       </ImageView>
-      <Text fill="#321268" layoutX="-17.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D24 Hostel" textAlignment="RIGHT" wrappingWidth="168.13671875">
+      <Text fill="#321268" layoutX="62.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D24 Hostel - Reserve Room" textAlignment="RIGHT" wrappingWidth="354.13671875">
          <font>
             <Font name="Franklin Gothic Medium" size="30.0" />
          </font>
       </Text>
-      <JFXButton contentDisplay="TOP" layoutX="-2.0" layoutY="150.0" onAction="#addSudentOnAction" prefHeight="72.0" prefWidth="59.0" text="Student" textAlignment="RIGHT">
+      <JFXButton contentDisplay="TOP" layoutX="13.0" layoutY="120.0" onAction="#addSudentOnAction" prefHeight="72.0" prefWidth="59.0" text="Student" textAlignment="RIGHT">
          <graphic>
             <ImageView fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -32,7 +32,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="-2.0" layoutY="249.0" onAction="#roomOnAction" prefHeight="68.0" prefWidth="59.0" text="Room" textAlignment="RIGHT">
+      <JFXButton contentDisplay="TOP" layoutX="13.0" layoutY="219.0" onAction="#roomOnAction" prefHeight="68.0" prefWidth="59.0" text="Room" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>
@@ -44,7 +44,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="-2.0" layoutY="344.0" onAction="#keyOnAction" prefHeight="68.0" prefWidth="59.0" text="Key" textAlignment="RIGHT">
+      <JFXButton contentDisplay="TOP" layoutX="13.0" layoutY="314.0" onAction="#keyOnAction" prefHeight="68.0" prefWidth="59.0" text="Key" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>
@@ -56,7 +56,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="1.0" layoutY="442.0" onAction="#userOnaction" prefHeight="61.0" prefWidth="51.0" text="User" textAlignment="RIGHT">
+      <JFXButton contentDisplay="TOP" layoutX="16.0" layoutY="412.0" onAction="#userOnaction" prefHeight="61.0" prefWidth="51.0" text="User" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>
@@ -68,14 +68,102 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="-2.0" layoutY="61.0" onAction="#homeOnAtion" prefHeight="72.0" prefWidth="59.0" text="Home" textAlignment="RIGHT">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assest/icons8-home-48.png" />
-               </image>
-            </ImageView>
-         </graphic>
+      <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="13.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assest/icons8-home-page-64.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="456.0" layoutY="175.0" prefHeight="48.0" prefWidth="258.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <children>
+            <JFXComboBox fx:id="cmbStudentId" focusColor="#405aa800" layoutX="4.0" layoutY="3.0" prefHeight="42.0" prefWidth="248.0" unFocusColor="#4d4d4d00" />
+         </children>
+      </AnchorPane>
+      <JFXComboBox fx:id="cmbStudentId" focusColor="#405aa800" layoutX="-339.0" layoutY="31.0" prefHeight="42.0" prefWidth="248.0" unFocusColor="#4d4d4d00" />
+      <Label layoutX="458.0" layoutY="158.0" opacity="0.66" text="Student Id" textFill="#281389">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="456.0" layoutY="255.0" prefHeight="48.0" prefWidth="258.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <children>
+            <JFXTextField fx:id="txtStudentName" editable="false" focusColor="#405aa800" layoutX="12.0" layoutY="3.0" prefHeight="42.0" prefWidth="234.0" unFocusColor="#4d4d4d00" />
+         </children>
+      </AnchorPane>
+      <JFXTextField fx:id="txtStudentName" editable="false" focusColor="#405aa800" layoutX="-331.0" layoutY="31.0" prefHeight="42.0" prefWidth="234.0" unFocusColor="#4d4d4d00" />
+      <Label layoutX="458.0" layoutY="238.0" opacity="0.66" text="Student Name" textFill="#281389">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="164.0" layoutY="176.0" prefHeight="48.0" prefWidth="258.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <children>
+            <JFXComboBox fx:id="cmbRoomId" focusColor="#405aa800" layoutX="4.0" layoutY="3.0" prefHeight="42.0" prefWidth="248.0" unFocusColor="#4d4d4d00" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="166.0" layoutY="159.0" opacity="0.66" text="Room Id" textFill="#281389">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="166.0" layoutY="251.0" prefHeight="48.0" prefWidth="258.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <children>
+            <JFXTextField fx:id="txtRoomType" editable="false" focusColor="#405aa800" layoutX="12.0" layoutY="4.0" prefHeight="42.0" prefWidth="234.0" unFocusColor="#4d4d4d00" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="168.0" layoutY="234.0" opacity="0.66" text="Room Type" textFill="#281389">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="167.0" layoutY="332.0" prefHeight="49.0" prefWidth="118.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <children>
+            <JFXTextField fx:id="txtAvailableQty" editable="false" focusColor="#405aa800" layoutX="6.0" layoutY="4.0" prefHeight="42.0" prefWidth="109.0" unFocusColor="#4d4d4d00" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="169.0" layoutY="315.0" opacity="0.66" text="Available Qty" textFill="#281389">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnReserve" layoutX="456.0" layoutY="426.0" onAction="#reserveRoomOnAction" prefHeight="36.0" prefWidth="127.0" style="-fx-background-color: #B28211;" text="Reserve Room" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
       </JFXButton>
+      <JFXButton fx:id="btnCancel" layoutX="589.0" layoutY="426.0" onAction="#clearFormOnAction" prefHeight="36.0" prefWidth="127.0" style="-fx-background-color: #E8F0FE;" text="Cancel" textFill="#686161">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="305.0" layoutY="332.0" prefHeight="49.0" prefWidth="118.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <children>
+            <JFXTextField fx:id="txtKeyMoney" editable="false" focusColor="#405aa800" layoutX="6.0" layoutY="4.0" prefHeight="42.0" prefWidth="109.0" unFocusColor="#4d4d4d00" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="307.0" layoutY="315.0" opacity="0.66" text="Key Money" textFill="#281389">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXRadioButton layoutX="473.0" layoutY="348.0" text="Pay Now">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXRadioButton layoutX="597.0" layoutY="348.0" text="Pay Later">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXTextField fx:id="txtID" focusColor="#3b5ab9" layoutX="423.0" layoutY="85.0" unFocusColor="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtDate" layoutX="583.0" layoutY="85.0" prefHeight="29.0" prefWidth="150.0" unFocusColor="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXTextField>
    </children>
 </AnchorPane>
