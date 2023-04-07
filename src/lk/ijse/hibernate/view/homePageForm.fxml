@@ -73,12 +73,6 @@
             <Image url="@../assest/icons8-home-page-64.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="456.0" layoutY="175.0" prefHeight="48.0" prefWidth="258.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
-         <children>
-            <JFXComboBox fx:id="cmbStudentId" focusColor="#405aa800" layoutX="4.0" layoutY="3.0" prefHeight="42.0" prefWidth="248.0" unFocusColor="#4d4d4d00" />
-         </children>
-      </AnchorPane>
-      <JFXComboBox fx:id="cmbStudentId" focusColor="#405aa800" layoutX="-339.0" layoutY="31.0" prefHeight="42.0" prefWidth="248.0" unFocusColor="#4d4d4d00" />
       <Label layoutX="458.0" layoutY="158.0" opacity="0.66" text="Student Id" textFill="#281389">
          <font>
             <Font name="Arial Bold" size="13.0" />
@@ -86,7 +80,7 @@
       </Label>
       <AnchorPane layoutX="456.0" layoutY="255.0" prefHeight="48.0" prefWidth="258.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
          <children>
-            <JFXTextField fx:id="txtStudentName" editable="false" focusColor="#405aa800" layoutX="12.0" layoutY="3.0" prefHeight="42.0" prefWidth="234.0" unFocusColor="#4d4d4d00" />
+            <JFXTextField fx:id="txtname" editable="false" focusColor="#405aa800" layoutX="12.0" layoutY="5.0" prefHeight="42.0" prefWidth="234.0" unFocusColor="#4d4d4d00" />
          </children>
       </AnchorPane>
       <JFXTextField fx:id="txtStudentName" editable="false" focusColor="#405aa800" layoutX="-331.0" layoutY="31.0" prefHeight="42.0" prefWidth="234.0" unFocusColor="#4d4d4d00" />
@@ -97,7 +91,7 @@
       </Label>
       <AnchorPane layoutX="164.0" layoutY="176.0" prefHeight="48.0" prefWidth="258.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
          <children>
-            <JFXComboBox fx:id="cmbRoomId" focusColor="#405aa800" layoutX="4.0" layoutY="3.0" prefHeight="42.0" prefWidth="248.0" unFocusColor="#4d4d4d00" />
+            <JFXComboBox fx:id="cmbRoomId" focusColor="#405aa800" layoutX="4.0" layoutY="3.0" onKeyPressed="#comboRoomEnterOnKeyPress" prefHeight="42.0" prefWidth="248.0" unFocusColor="#4d4d4d00" />
          </children>
       </AnchorPane>
       <Label layoutX="166.0" layoutY="159.0" opacity="0.66" text="Room Id" textFill="#281389">
@@ -155,7 +149,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXRadioButton>
-      <JFXTextField fx:id="txtID" focusColor="#3b5ab9" layoutX="423.0" layoutY="85.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtID" focusColor="#3b5ab9" layoutX="501.0" layoutY="85.0" prefHeight="29.0" prefWidth="88.0" unFocusColor="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -165,5 +159,10 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXTextField>
+      <AnchorPane layoutX="460.0" layoutY="176.0" prefHeight="48.0" prefWidth="258.0" style="-fx-border-color: #EDEDF0; -fx-border-width: 1.5; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <children>
+            <JFXComboBox fx:id="cmbStudentID" focusColor="#405aa800" layoutY="3.0" onKeyPressed="#comboStudentEnterOnKeyPrsse" prefHeight="42.0" prefWidth="248.0" unFocusColor="#4d4d4d00" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

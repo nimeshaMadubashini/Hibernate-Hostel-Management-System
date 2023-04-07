@@ -7,21 +7,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hibernate.bo.BOFactory;
 import lk.ijse.hibernate.bo.custome.ReservationBO;
+import lk.ijse.hibernate.dto.RoomDTO;
+import lk.ijse.hibernate.dto.StudentDTO;
 import lk.ijse.hibernate.utill.nave.Navigation;
 import lk.ijse.hibernate.utill.nave.Routes;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class HomePageFormController {
     @FXML
     private AnchorPane pane;
     @FXML
-    private JFXComboBox cmbStudentId;
-
+    private JFXComboBox cmbStudentID;
+@FXML
+private JFXTextField txtname;
     @FXML
     private JFXTextField txtStudentName;
 
@@ -53,6 +58,12 @@ ReservationBO reservationBO= (ReservationBO) BOFactory.getBoFactory().getBO(BOFa
     public void initialize() {
     loadRoomId();
     loadStudentId();
+        try {
+            txtID.setText(reservationBO.getReservationId());
+            txtDate.setText(String.valueOf(LocalDate.now()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -103,15 +114,41 @@ ReservationBO reservationBO= (ReservationBO) BOFactory.getBoFactory().getBO(BOFa
         }
     }
     private void loadStudentId() {
+        ObservableList<String> observableList = FXCollections.observableArrayList();
         try {
-            ObservableList<String> observableList= FXCollections.observableArrayList();
+            List<String> idList = reservationBO.loadStudentId();
 
-            List<String> idList=reservationBO.loadStudentId();
-            for (String id:idList) {
+            for (String id : idList) {
                 observableList.add(id);
-
             }
-            cmbStudentId.setItems(observableList);
+            cmbStudentID.setItems(observableList);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @FXML
+    void comboRoomEnterOnKeyPress(KeyEvent event) {
+String roomId= String.valueOf(cmbRoomId.getValue());
+
+        try {
+       RoomDTO roomDTO = reservationBO.findDetail(roomId);
+            txtRoomType.setText(roomDTO.getType());
+            txtKeyMoney.setText(roomDTO.getKey_money());
+            txtAvailableQty.setText(String.valueOf(roomDTO.getQty()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @FXML
+    void comboStudentEnterOnKeyPrsse(KeyEvent event) {
+String studentId= String.valueOf(cmbStudentID.getValue());
+        try {
+            StudentDTO studentDTO=reservationBO.findStudent(studentId);
+            txtname.setText(studentDTO.getName());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -53,4 +53,13 @@ public class ReservationDAOImpl implements ReservationDAO {
     public Reservation find(String s) throws Exception {
         return null;
     }
+    @Override
+    public String getReservationId() throws Exception {
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<String> list = session.createQuery("SELECT resId FROM Reservation ORDER BY resId DESC").setMaxResults(1).list();
+        transaction.commit();
+        session.close();
+        return list.size()>0? String.format("R%03d",Integer.parseInt(list.get(0).replace("R",""))+1):"R001";
+    }
 }
