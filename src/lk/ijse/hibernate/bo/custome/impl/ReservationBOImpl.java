@@ -8,6 +8,7 @@ import lk.ijse.hibernate.dao.custome.StudentDAO;
 import lk.ijse.hibernate.dto.ReservationDTO;
 import lk.ijse.hibernate.dto.RoomDTO;
 import lk.ijse.hibernate.dto.StudentDTO;
+import lk.ijse.hibernate.entity.Reservation;
 import lk.ijse.hibernate.entity.Room;
 import lk.ijse.hibernate.entity.Student;
 
@@ -45,7 +46,12 @@ public class ReservationBOImpl implements ReservationBO{
 
     @Override
     public boolean save(ReservationDTO dto) throws Exception {
-        return false;
+        StudentDTO stDto=dto.getStudent();
+        RoomDTO rmDto=dto.getRoom();
+        return reservationDAO.save(new Reservation(dto.getResId(), dto.getDate(),
+                new Student(stDto.getStudent_id(), stDto.getName(), stDto.getAddress(), stDto.getContact_no(), stDto.getDob(), stDto.getGender()),
+                new Room(rmDto.getRoom_type_id(), rmDto.getType(), rmDto.getKey_money(), rmDto.getQty())
+                , dto.getStatus()));
     }
 
     @Override

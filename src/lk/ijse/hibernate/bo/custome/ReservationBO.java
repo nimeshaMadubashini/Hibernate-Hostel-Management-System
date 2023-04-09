@@ -17,4 +17,6 @@ public interface ReservationBO  extends SuperBO{
     StudentDTO findStudent(String s) throws Exception;
     boolean save(ReservationDTO dto) throws Exception;
     String getReservationId() throws Exception;
+
+
 }

@@ -2,6 +2,7 @@ package lk.ijse.hibernate.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hibernate.bo.BOFactory;
 import lk.ijse.hibernate.bo.custome.ReservationBO;
+import lk.ijse.hibernate.dto.Notification;
+import lk.ijse.hibernate.dto.ReservationDTO;
 import lk.ijse.hibernate.dto.RoomDTO;
 import lk.ijse.hibernate.dto.StudentDTO;
 import lk.ijse.hibernate.utill.nave.Navigation;
@@ -49,6 +52,11 @@ private JFXTextField txtname;
     private JFXTextField txtKeyMoney;
 
     @FXML
+    private JFXRadioButton rbdPatNow;
+
+    @FXML
+    private JFXRadioButton rbdPayLater;
+    @FXML
     private JFXTextField txtID;
 
     @FXML
@@ -69,13 +77,44 @@ ReservationBO reservationBO= (ReservationBO) BOFactory.getBoFactory().getBO(BOFa
 
     @FXML
     void clearFormOnAction(ActionEvent event) {
-
+        cmbStudentID.getSelectionModel().clearSelection();
+        cmbRoomId.getSelectionModel().clearSelection();
+        txtRoomType.clear();
+        txtAvailableQty.clear();
+        txtKeyMoney.clear();
+        txtStudentName.clear();
+        rbdPayLater.setSelected(false);
+        rbdPatNow.setSelected(false);
     }
 
 
     @FXML
     void reserveRoomOnAction(ActionEvent event) {
+        String status = null;
+        if(rbdPatNow.isSelected()){
+            status=rbdPatNow.getText();
+        } else if (rbdPayLater.isSelected()) {
+            status=rbdPayLater.getText();
 
+        }
+        try {
+            boolean isAdd=reservationBO.save(new ReservationDTO(reservationBO.getReservationId(),LocalDate.now(),
+                    reservationBO.findStudent(String.valueOf(cmbStudentID.getValue())), reservationBO.findDetail(String.valueOf(cmbRoomId.getValue())),status));
+            if (isAdd) {
+                String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
+                String title = "Successful!";
+                String text = " Reserve Room  Successful";
+                Notification.showNotification(url, title, text);
+            } else {
+                String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
+                String title = "UnSuccessful";
+                String text = "Reserve Room  UnSuccessful";
+                Notification.showNotification(url, title, text);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     @FXML
     void addSudentOnAction(ActionEvent event) throws IOException {

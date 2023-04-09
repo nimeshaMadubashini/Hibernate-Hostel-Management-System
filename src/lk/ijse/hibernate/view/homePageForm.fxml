@@ -139,12 +139,12 @@
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <JFXRadioButton layoutX="473.0" layoutY="348.0" text="Pay Now">
+      <JFXRadioButton fx:id="rbdPatNow" layoutX="473.0" layoutY="348.0" text="Pay Now">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXRadioButton>
-      <JFXRadioButton layoutX="597.0" layoutY="348.0" text="Pay Later">
+      <JFXRadioButton fx:id="rbdPayLater" layoutX="597.0" layoutY="348.0" text="Pay Later">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
