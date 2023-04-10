@@ -5,4 +5,5 @@ import lk.ijse.hibernate.entity.Reservation;
 
 public interface ReservationDAO extends CrudDao<Reservation,String> {
     String getReservationId() throws Exception;
+    Reservation get(String s) throws Exception;
 }

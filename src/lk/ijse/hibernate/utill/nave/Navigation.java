@@ -38,7 +38,7 @@ public class Navigation {
                 break;
             case KEY:
                 window.setTitle("Reservtion Page");
-                initUI("RoomReservationManageForm.fxml");
+                initUI("KeyPaymentForm.fxml");
                 break;
             case USER:
                 window.setTitle("User Edit Page");

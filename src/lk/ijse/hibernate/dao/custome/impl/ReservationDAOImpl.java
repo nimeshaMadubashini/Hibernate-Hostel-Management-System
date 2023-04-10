@@ -31,7 +31,12 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public boolean update(Reservation entity) throws Exception {
-        return false;
+        Session session=SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
@@ -61,5 +66,14 @@ public class ReservationDAOImpl implements ReservationDAO {
         transaction.commit();
         session.close();
         return list.size()>0? String.format("R%03d",Integer.parseInt(list.get(0).replace("R",""))+1):"R001";
+    }
+    @Override
+    public Reservation get(String s) throws Exception {
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Reservation reservation = session.get(Reservation.class, s);
+        transaction.commit();
+        session.close();
+        return reservation;
     }
 }
