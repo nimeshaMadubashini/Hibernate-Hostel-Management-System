@@ -11,8 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import lk.ijse.hibernate.bo.BOFactory;
 import lk.ijse.hibernate.bo.custome.RoomBO;
 import lk.ijse.hibernate.dto.Notification;
@@ -24,6 +26,8 @@ import lk.ijse.hibernate.utill.nave.Routes;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RoomManageFormController {
     @FXML
@@ -71,8 +75,32 @@ public class RoomManageFormController {
     private JFXComboBox comboid;
     RoomBO roomBO = (RoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ROOM);
     int myIndex;
+    private Matcher idMatcher;
+    private Matcher  typeMatcher;
+    private Matcher lkrMatcher;
+    private Matcher qtyMatcher;
+
+
+
+    private void setPattern() {
+        Pattern idPattern = Pattern.compile("^(Rm)(-)([0-9]{1})([0-9]{1})([0-9]{1})$");
+        idMatcher = idPattern.matcher(txtroomid.getText());
+
+        Pattern typePattern = Pattern.compile("^(Non-AC|AC|AC\\\\Food|Non-AC\\\\Food)$");
+        typeMatcher = typePattern.matcher(txtRoomType.getText());
+
+        Pattern lkrPattern = Pattern.compile("^([0-9]{4,})$");
+        lkrMatcher = lkrPattern.matcher(txtLKR.getText());
+
+
+        Pattern qtyPattern = Pattern.compile("^([0-9]{1,})$");
+        qtyMatcher = qtyPattern.matcher(txtqty.getText());
+
+
+    }
     public void initialize() {
         loadRoomId();
+        setPattern();
         try {
             table();
 
@@ -187,6 +215,10 @@ public class RoomManageFormController {
     void deleteOnAction(ActionEvent event) {
         String id = txtroomid.getText();
         try {
+            if (idMatcher.matches()) {
+                if (typeMatcher.matches()) {
+                    if (lkrMatcher.matches()) {
+                        if (qtyMatcher.matches()) {
             boolean isDelete = roomBO.delete(id);
             if (isDelete) {
 
@@ -206,6 +238,28 @@ public class RoomManageFormController {
                 String text = "Room Delete  UnSuccessful";
                 Notification.showNotification(url, title, text);
             }
+                        } else {
+                            txtqty.requestFocus();
+                            txtqty.setFocusColor(Paint.valueOf("Red"));
+                            lblQty.setText("invalid Qty");
+                        }
+                    } else {
+                        txtLKR.requestFocus();
+                        txtLKR.setFocusColor(Paint.valueOf("Red"));
+                        lblMoney.setText("invalid Currency");
+                    }
+
+                } else {
+                    txtRoomType.requestFocus();
+                    txtRoomType.setFocusColor(Paint.valueOf("Red"));
+                    lblType.setText("invalid Room Type");
+                }
+            } else {
+                txtroomid.requestFocus();
+                txtroomid.setFocusColor(Paint.valueOf("Red"));
+                lblid.setText("invalid ID Type");
+
+            }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -219,12 +273,23 @@ public class RoomManageFormController {
 
     @FXML
     void idOnKeyPress(KeyEvent event) {
-
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            txtRoomType.requestFocus();
+        }
     }
 
     @FXML
     void idOnkeyRelease(KeyEvent event) {
+        lblid.setText("");
+        txtroomid.setFocusColor(Paint.valueOf("Blue"));
+        Pattern idPattern = Pattern.compile("^(Rm)(-)([0-9]{1})([0-9]{1})([0-9]{1})$");
+        idMatcher = idPattern.matcher(txtroomid.getText());
 
+        if (!idMatcher.matches()) {
+            txtroomid.requestFocus();
+            txtroomid.setFocusColor(Paint.valueOf("Red"));
+            lblid.setText("Invalid ID Type");
+        }
     }
 
     @FXML
@@ -243,12 +308,23 @@ public class RoomManageFormController {
 
     @FXML
     void moneyOnKeyPress(KeyEvent event) {
-
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            txtqty.requestFocus();
+        }
     }
 
     @FXML
     void moneyOnKeyRelease(KeyEvent event) {
+        lblMoney.setText("");
+        txtLKR.setFocusColor(Paint.valueOf("Blue"));
+        Pattern lkrPattern = Pattern.compile("^([0-9]{4,})$");
+        lkrMatcher = lkrPattern.matcher(txtLKR.getText());
 
+        if (!lkrMatcher.matches()) {
+            txtLKR.requestFocus();
+            txtLKR.setFocusColor(Paint.valueOf("Red"));
+            lblMoney.setText("Invalid Currency");
+        }
     }
 
     @FXML
@@ -258,7 +334,16 @@ public class RoomManageFormController {
 
     @FXML
     void qtyOnKeyReleased(KeyEvent event) {
+        lblQty.setText("");
+        txtqty.setFocusColor(Paint.valueOf("Blue"));
+        Pattern qtyPattern = Pattern.compile("^([0-9]{1,})$");
+        qtyMatcher = qtyPattern.matcher(txtqty.getText());
 
+        if (!qtyMatcher.matches()) {
+            txtqty.requestFocus();
+            txtqty.setFocusColor(Paint.valueOf("Red"));
+            lblQty.setText("Invalid Qty");
+        }
     }
 
     @FXML
@@ -268,12 +353,23 @@ public class RoomManageFormController {
 
     @FXML
     void typeOnKeyPress(KeyEvent event) {
-
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            txtLKR.requestFocus();
+        }
     }
 
     @FXML
     void typeOnKeyRelease(KeyEvent event) {
+        lblType.setText("");
+        txtRoomType.setFocusColor(Paint.valueOf("Blue"));
+        Pattern typePattern = Pattern.compile("^(Non-AC|AC|AC\\\\Food|Non-AC\\\\Food)$");
+        idMatcher = typePattern.matcher(txtRoomType.getText());
 
+        if (!idMatcher.matches()) {
+            txtRoomType.requestFocus();
+            txtRoomType.setFocusColor(Paint.valueOf("Red"));
+            lblType.setText("Invalid  Room Type");
+        }
     }
 
     @FXML

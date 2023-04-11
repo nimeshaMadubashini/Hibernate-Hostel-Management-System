@@ -105,6 +105,14 @@ ReservationBO reservationBO= (ReservationBO) BOFactory.getBoFactory().getBO(BOFa
                 String title = "Successful!";
                 String text = " Reserve Room  Successful";
                 Notification.showNotification(url, title, text);
+                cmbStudentID.getSelectionModel().clearSelection();
+                cmbRoomId.getSelectionModel().clearSelection();
+                txtRoomType.clear();
+                txtAvailableQty.clear();
+                txtKeyMoney.clear();
+                txtStudentName.clear();
+                rbdPayLater.setSelected(false);
+                rbdPatNow.setSelected(false);
             } else {
                 String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
                 String title = "UnSuccessful";

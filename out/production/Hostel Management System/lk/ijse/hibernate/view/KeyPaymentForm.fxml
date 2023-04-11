@@ -9,9 +9,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="pane" prefHeight="575.0" prefWidth="748.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.controller.KeyPaymentFormController">
    <children>
+      <ImageView fitHeight="375.0" fitWidth="611.0" layoutX="124.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assest/room.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="83.0" opacity="0.74" prefHeight="386.0" prefWidth="721.0">
+        <columns>
+          <TableColumn fx:id="colResId" prefWidth="108.0" text="Reservation Id" />
+          <TableColumn fx:id="colStId" prefWidth="95.0" text="Student ID" />
+            <TableColumn fx:id="colStdName" prefWidth="110.0" text="Student Name" />
+            <TableColumn fx:id="s" prefWidth="104.0" text="Room ID" />
+            <TableColumn fx:id="colRoomType" prefWidth="122.0" text="Room Type" />
+            <TableColumn fx:id="colStatus" prefWidth="94.0" text="Status" />
+            <TableColumn fx:id="colOption" prefWidth="87.0" text="Update" />
+        </columns>
+      </TableView>
       <JFXButton contentDisplay="TOP" layoutX="283.0" layoutY="489.0" onAction="#addSudentOnAction" prefHeight="72.0" prefWidth="59.0" text="Student" textAlignment="RIGHT">
          <graphic>
             <ImageView fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -62,16 +77,5 @@
             <Font name="Franklin Gothic Medium" size="30.0" />
          </font>
       </Text>
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="81.0" prefHeight="386.0" prefWidth="721.0">
-        <columns>
-          <TableColumn fx:id="colResId" prefWidth="108.0" text="Reservation Id" />
-          <TableColumn fx:id="colStId" prefWidth="95.0" text="Student ID" />
-            <TableColumn fx:id="colStdName" prefWidth="110.0" text="Student Name" />
-            <TableColumn fx:id="s" prefWidth="104.0" text="Room ID" />
-            <TableColumn fx:id="colRoomType" prefWidth="122.0" text="Room Type" />
-            <TableColumn fx:id="colStatus" prefWidth="94.0" text="Status" />
-            <TableColumn fx:id="colOption" prefWidth="87.0" text="Update" />
-        </columns>
-      </TableView>
    </children>
 </AnchorPane>

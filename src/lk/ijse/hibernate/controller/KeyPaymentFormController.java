@@ -16,7 +16,10 @@ import lk.ijse.hibernate.bo.BOFactory;
 import lk.ijse.hibernate.bo.custome.KeyPaymentBO;
 import lk.ijse.hibernate.dto.KeyPaymentDTO;
 import lk.ijse.hibernate.dto.Notification;
+import lk.ijse.hibernate.utill.nave.Navigation;
+import lk.ijse.hibernate.utill.nave.Routes;
 
+import java.io.IOException;
 import java.util.List;
 
 public class KeyPaymentFormController {
@@ -51,23 +54,23 @@ public void initialize(){
     loadTable();
 }
     @FXML
-    void HomeOnAction(ActionEvent event) {
-
+    void HomeOnAction(ActionEvent event) throws IOException {
+        Navigation.navigation(Routes.HOME,pane);
     }
 
     @FXML
-    void addSudentOnAction(ActionEvent event) {
-
+    void addSudentOnAction(ActionEvent event) throws IOException {
+        Navigation.navigation(Routes.STUDENT,pane);
     }
 
     @FXML
-    void roomOnAction(ActionEvent event) {
-
+    void roomOnAction(ActionEvent event) throws IOException {
+        Navigation.navigation(Routes.ROOM,pane);
     }
 
     @FXML
-    void userOnaction(ActionEvent event) {
-
+    void userOnaction(ActionEvent event) throws IOException {
+        Navigation.navigation(Routes.USER,pane);
     }
 public void loadTable(){
     try {
@@ -99,6 +102,7 @@ public void loadTable(){
 }
     private JFXButton getButton(String resId) {
         JFXButton btn = new JFXButton(" Pay ");
+        btn.setStyle("-fx-color: blue");
         btn.setStyle("-fx-border-color: Black");
         btn.setOnAction(event -> {
             try {
