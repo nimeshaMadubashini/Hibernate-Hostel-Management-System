@@ -124,7 +124,10 @@ public class RoomManageFormController {
         try {
             boolean isAdd = roomBO.save(roomDTO);
             if (isAdd) {
-
+                if (idMatcher.matches()) {
+                    if (typeMatcher.matches()) {
+                        if (lkrMatcher.matches()) {
+                            if (qtyMatcher.matches()) {
                 String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
                 String title = "Successful!";
                 String text = " Room Add  Successful";
@@ -141,7 +144,28 @@ public class RoomManageFormController {
                 String text = "Room Add  UnSuccessful";
                 Notification.showNotification(url, title, text);
             }
+                        } else {
+                            txtqty.requestFocus();
+                            txtqty.setFocusColor(Paint.valueOf("Red"));
+                            lblQty.setText("invalid Qty");
+                        }
+                    } else {
+                        txtLKR.requestFocus();
+                        txtLKR.setFocusColor(Paint.valueOf("Red"));
+                        lblMoney.setText("invalid Currency");
+                    }
 
+                } else {
+                    txtRoomType.requestFocus();
+                    txtRoomType.setFocusColor(Paint.valueOf("Red"));
+                    lblType.setText("invalid Room Type");
+                }
+            } else {
+                txtroomid.requestFocus();
+                txtroomid.setFocusColor(Paint.valueOf("Red"));
+                lblid.setText("invalid ID Type");
+
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -215,10 +239,7 @@ public class RoomManageFormController {
     void deleteOnAction(ActionEvent event) {
         String id = txtroomid.getText();
         try {
-            if (idMatcher.matches()) {
-                if (typeMatcher.matches()) {
-                    if (lkrMatcher.matches()) {
-                        if (qtyMatcher.matches()) {
+
             boolean isDelete = roomBO.delete(id);
             if (isDelete) {
 
@@ -238,28 +259,7 @@ public class RoomManageFormController {
                 String text = "Room Delete  UnSuccessful";
                 Notification.showNotification(url, title, text);
             }
-                        } else {
-                            txtqty.requestFocus();
-                            txtqty.setFocusColor(Paint.valueOf("Red"));
-                            lblQty.setText("invalid Qty");
-                        }
-                    } else {
-                        txtLKR.requestFocus();
-                        txtLKR.setFocusColor(Paint.valueOf("Red"));
-                        lblMoney.setText("invalid Currency");
-                    }
 
-                } else {
-                    txtRoomType.requestFocus();
-                    txtRoomType.setFocusColor(Paint.valueOf("Red"));
-                    lblType.setText("invalid Room Type");
-                }
-            } else {
-                txtroomid.requestFocus();
-                txtroomid.setFocusColor(Paint.valueOf("Red"));
-                lblid.setText("invalid ID Type");
-
-            }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
