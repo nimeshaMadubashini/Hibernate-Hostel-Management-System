@@ -44,6 +44,10 @@ public class Navigation {
                 window.setTitle("User Edit Page");
                 initUI("UserEditForm.fxml");
                 break;
+            case view:
+                window.setTitle("view Page");
+                initUI("VeiwReservation.fxml");
+                break;
             default:
                 new Alert(Alert.AlertType.ERROR,"Not Suitable UI Found!").show();
         }

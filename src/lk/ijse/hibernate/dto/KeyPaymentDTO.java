@@ -21,6 +21,15 @@ public class KeyPaymentDTO {
         this.btn = btn;
     }
 
+    public KeyPaymentDTO(String resId, String status, String room_Type_id, String type, String student_id, String name) {
+        this.resId = resId;
+        this.status = status;
+        this.room_Type_id = room_Type_id;
+        this.type = type;
+        this.student_id = student_id;
+        this.name = name;
+    }
+
     public String getResId() {
         return resId;
     }

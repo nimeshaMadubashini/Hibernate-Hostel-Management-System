@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="pane" prefHeight="575.0" prefWidth="748.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.controller.VeiwReservationController">
+   <children>
+      <ImageView fitHeight="375.0" fitWidth="611.0" layoutX="134.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assest/d61ebe4813d6d65d878b750ac26982ae.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableView" layoutX="58.0" layoutY="95.0" opacity="0.74" prefHeight="386.0" prefWidth="633.0">
+         <columns>
+            <TableColumn fx:id="colResId" prefWidth="108.0" text="Reservation Id" />
+            <TableColumn fx:id="colStId" prefWidth="95.0" text="Student ID" />
+            <TableColumn fx:id="colStdName" prefWidth="110.0" text="Student Name" />
+            <TableColumn fx:id="s" prefWidth="104.0" text="Room ID" />
+            <TableColumn fx:id="colRoomType" prefWidth="122.0" text="Room Type" />
+            <TableColumn fx:id="colStatus" prefWidth="94.0" text="Status" />
+         </columns>
+      </TableView>
+      <Text fill="#321268" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D24 Hostel - All Reservation" textAlignment="RIGHT" wrappingWidth="371.13671875">
+         <font>
+            <Font name="Franklin Gothic Medium" size="30.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

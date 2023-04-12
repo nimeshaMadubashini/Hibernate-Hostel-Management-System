@@ -7,6 +7,7 @@ import lk.ijse.hibernate.entity.Student;
 import lk.ijse.hibernate.utill.session.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -46,7 +47,14 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public List<Reservation> loadAll() throws Exception {
-        return null;
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "FROM Reservation ";
+        Query query = session.createQuery(hql);
+        List<Reservation> list = query.list();
+        transaction.commit();
+        session.close();
+        return list;
     }
 
     @Override

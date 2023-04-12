@@ -86,7 +86,10 @@ ReservationBO reservationBO= (ReservationBO) BOFactory.getBoFactory().getBO(BOFa
         rbdPayLater.setSelected(false);
         rbdPatNow.setSelected(false);
     }
-
+    @FXML
+    void viewOnAction(ActionEvent event) throws IOException {
+Navigation.navigation(Routes.view,pane);
+    }
 
     @FXML
     void reserveRoomOnAction(ActionEvent event) {
