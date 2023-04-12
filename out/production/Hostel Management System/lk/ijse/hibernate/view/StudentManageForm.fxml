@@ -98,6 +98,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
+            <Label fx:id="lblGender" layoutX="19.0" layoutY="397.0" prefHeight="17.0" prefWidth="181.0" textFill="RED" />
          </children>
       </AnchorPane>
       <TableView fx:id="tblView" layoutX="239.0" layoutY="78.0" prefHeight="315.0" prefWidth="495.0">

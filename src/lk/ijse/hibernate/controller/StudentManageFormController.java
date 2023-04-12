@@ -13,9 +13,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import lk.ijse.hibernate.bo.BOFactory;
 import lk.ijse.hibernate.bo.custome.StudentBO;
 import lk.ijse.hibernate.dto.Notification;
@@ -29,6 +31,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StudentManageFormController {
     @FXML
@@ -58,6 +62,8 @@ public class StudentManageFormController {
 
     @FXML
     private Label lblContact;
+    @FXML
+    private Label lblGender;
 
     @FXML
     private TableView<StudentDTO> tblView;
@@ -87,8 +93,28 @@ public class StudentManageFormController {
     private JFXRadioButton rdbFemale;
     StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.STUDENT);
     int myIndex;
+    private Matcher idMatcher;
+    private Matcher nameMatcher;
+    private Matcher addressMatcher;
+    private Matcher teleNumMatcher;
+
+
+    private void setPattern() {
+        Pattern idPattern = Pattern.compile("^(S)([0-9]{1})|([0-9]{1,})$");
+        idMatcher = idPattern.matcher(txtStudentId.getText());
+
+        Pattern namePattern = Pattern.compile("^[a-zA-Z\\s]+");
+        nameMatcher = namePattern.matcher(txtName.getText());
+
+        Pattern addressPattern = Pattern.compile("^([a-zA-Z0-9\\/,\\s])+([a-zA-z\\s,])+([a-zA-z])$");
+        addressMatcher = addressPattern.matcher(txtAddress.getText());
+
+        Pattern teleNumPattern = Pattern.compile("^(074|075|072|077|071|078|047|011)([0-9]{7}$)");
+        teleNumMatcher = teleNumPattern.matcher(txtContact.getText());
+    }
 
     public void initialize() {
+        setPattern();
         loadStudentId();
         try {
             table();
@@ -117,27 +143,57 @@ public class StudentManageFormController {
         }
         StudentDTO studentDTO = new StudentDTO(id, name, add, contact, dob, gender);
         try {
-            boolean isAdd = studentBO.save(studentDTO);
-            if (isAdd) {
-                String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
-                String title = "Successful!";
-                String text = " Student Add  Successful";
-                Notification.showNotification(url, title, text);
-                txtStudentId.setText("");
-                txtName.setText("");
-                txtdate.setValue(LocalDate.now());
-                txtAddress.setText("");
-                txtContact.setText("");
-                rdbMale.setSelected(false);
-                rdbFemale.setSelected(false);
-                table();
-                loadStudentId();
+            if (idMatcher.matches()) {
+                if (nameMatcher.matches()) {
+                        if (addressMatcher.matches()) {
+                            if (teleNumMatcher.matches()) {
+                                if (rdbFemale.isSelected() || rdbMale.isSelected()) {
+                                    boolean isAdd = studentBO.save(studentDTO);
+                                    if (isAdd) {
+                                        String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
+                                        String title = "Successful!";
+                                        String text = " Student Add  Successful";
+                                        Notification.showNotification(url, title, text);
+                                        txtStudentId.setText("");
+                                        txtName.setText("");
+                                        txtdate.setValue(LocalDate.now());
+                                        txtAddress.setText("");
+                                        txtContact.setText("");
+                                        rdbMale.setSelected(false);
+                                        rdbFemale.setSelected(false);
+                                        table();
+                                        loadStudentId();
+                                    } else {
+                                        String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
+                                        String title = "UnSuccessful";
+                                        String text = "Student Add  UnSuccessful";
+                                        Notification.showNotification(url, title, text);
+                                    }
+                                }else {
+                                    lblGender.setText("Select one");
+                                }
+                            } else {
+                                txtContact.requestFocus();
+                                txtContact.setFocusColor(Paint.valueOf("Red"));
+                                lblContact.setText("invalid TelePhone Number");
+                            }
+                        } else {
+                            txtAddress.requestFocus();
+                            txtAddress.setFocusColor(Paint.valueOf("Red"));
+                            lblAddress.setText("invalid address");
+                        }
             } else {
-                String url = "lk/ijse/hibernate/assest/icons8-select-no-64 (1).png";
-                String title = "UnSuccessful";
-                String text = "Student Add  UnSuccessful";
-                Notification.showNotification(url, title, text);
+                txtName.requestFocus();
+                txtName.setFocusColor(Paint.valueOf("Red"));
+                lblname.setText("invalid name Type");
+
             }
+        } else {
+            txtStudentId.requestFocus();
+            txtStudentId.setFocusColor(Paint.valueOf("Red"));
+            lblid.setText("invalid Student id");
+
+        }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -148,22 +204,44 @@ public class StudentManageFormController {
 
     @FXML
     void addOnKeyRelease(KeyEvent event) {
+        lblAddress.setText("");
+        txtAddress.setFocusColor(Paint.valueOf("Blue"));
+        Pattern namePattern = Pattern.compile("^([a-zA-Z0-9\\/,\\s])+([a-zA-z\\s,])+([a-zA-z])$");
+        addressMatcher = namePattern.matcher(txtAddress.getText());
 
+        if (!addressMatcher.matches()) {
+            txtAddress.requestFocus();
+            txtAddress.setFocusColor(Paint.valueOf("Red"));
+            lblAddress.setText("Invalid   Address");
+        }
     }
 
     @FXML
     void addressOnKeyPress(KeyEvent event) {
-
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            txtContact.requestFocus();
+        }
     }
 
     @FXML
     void contactOnKeyPress(KeyEvent event) {
-
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            txtdate.requestFocus();
+        }
     }
 
     @FXML
     void contactOnKeyReleased(KeyEvent event) {
+        lblContact.setText("");
+        txtContact.setFocusColor(Paint.valueOf("Blue"));
+        Pattern namePattern = Pattern.compile("^(074|075|072|077|071|078|047|011)([0-9]{7}$)");
+        teleNumMatcher = namePattern.matcher(txtContact.getText());
 
+        if (!teleNumMatcher.matches()) {
+            txtContact.requestFocus();
+            txtContact.setFocusColor(Paint.valueOf("Red"));
+            lblContact.setText("Invalid  TelePhone Number");
+        }
     }
 
     @FXML
@@ -209,12 +287,23 @@ public class StudentManageFormController {
 
     @FXML
     void idOnKeyPress(KeyEvent event) {
-
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            txtName.requestFocus();
+        }
     }
 
     @FXML
     void idOnkeyRelease(KeyEvent event) {
+        lblid.setText("");
+        txtStudentId.setFocusColor(Paint.valueOf("Blue"));
+        Pattern idPattern = Pattern.compile("^(S)([0-9]{1})|([0-9]{1,})$");
+        idMatcher = idPattern.matcher(txtStudentId.getText());
 
+        if (!idMatcher.matches()) {
+            txtStudentId.requestFocus();
+            txtStudentId.setFocusColor(Paint.valueOf("Red"));
+            lblid.setText("Invalid  Member_Id");
+        }
     }
 
     @FXML
@@ -224,12 +313,23 @@ public class StudentManageFormController {
 
     @FXML
     void nameOnKeyPress(KeyEvent event) {
-
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            txtAddress.requestFocus();
+        }
     }
 
     @FXML
     void nameOnKeyRelease(KeyEvent event) {
+        lblname.setText("");
+        txtName.setFocusColor(Paint.valueOf("Blue"));
+        Pattern namePattern = Pattern.compile("^[a-zA-Z\\s]+");
+        nameMatcher = namePattern.matcher(txtName.getText());
 
+        if (!nameMatcher.matches()) {
+            txtName.requestFocus();
+            txtName.setFocusColor(Paint.valueOf("Red"));
+            lblname.setText("Invalid  Name Type");
+        }
     }
 
     @FXML
@@ -252,7 +352,7 @@ public class StudentManageFormController {
         }
         StudentDTO studentDTO = new StudentDTO(id, name, add, contact, dob, gender);
         try {
-            boolean isUpdated=studentBO.update(studentDTO);
+            boolean isUpdated = studentBO.update(studentDTO);
             if (isUpdated) {
                 String url = "lk/ijse/hibernate/assest/icons8-check-mark-48.png";
                 String title = "Successful!";
@@ -319,6 +419,7 @@ public class StudentManageFormController {
         colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
     }
+
     public void table() throws Exception {
         List<StudentDTO> list = studentBO.loadAllStudent();
         ObservableList<StudentDTO> observableList = FXCollections.observableArrayList();
@@ -346,12 +447,11 @@ public class StudentManageFormController {
                     txtContact.setText(tblView.getItems().get(myIndex).getContact_no());
                     txtdate.setValue(tblView.getItems().get(myIndex).getDob());
 
-                 if( "Male".equals(tblView.getItems().get(myIndex).getGender()))
-                  {
-                      rdbMale.setSelected(true);
-                  } else if ( "Female".equals(tblView.getItems().get(myIndex).getGender())) {
-                     rdbFemale.setSelected(true);
-                 }
+                    if ("Male".equals(tblView.getItems().get(myIndex).getGender())) {
+                        rdbMale.setSelected(true);
+                    } else if ("Female".equals(tblView.getItems().get(myIndex).getGender())) {
+                        rdbFemale.setSelected(true);
+                    }
 
                 }
             });
