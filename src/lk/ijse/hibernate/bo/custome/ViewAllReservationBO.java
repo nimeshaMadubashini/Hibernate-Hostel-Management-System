@@ -11,5 +11,6 @@ import java.util.List;
 public interface ViewAllReservationBO extends SuperBO {
 
     public List<KeyPaymentDTO> loadAllStudent() throws Exception;
-
+    public List<String> loadReserveRoomStId() throws Exception;
+    StudentDTO findStudent(String s) throws Exception,NullPointerException;
 }

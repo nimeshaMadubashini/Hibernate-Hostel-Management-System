@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface QueryDAO extends SuperDAO {
     List<Object[]> getPendingKeyPayments() throws Exception;
-}
+    List<String> loadReserveRoomStId() throws Exception;
+ }

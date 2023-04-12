@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -8,28 +11,52 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="pane" prefHeight="575.0" prefWidth="748.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.controller.VeiwReservationController">
    <children>
-      <ImageView fitHeight="375.0" fitWidth="611.0" layoutX="134.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="749.0" layoutX="83.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assest/d61ebe4813d6d65d878b750ac26982ae.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableView" layoutX="58.0" layoutY="95.0" opacity="0.74" prefHeight="386.0" prefWidth="633.0">
-         <columns>
-            <TableColumn fx:id="colResId" prefWidth="108.0" text="Reservation Id" />
-            <TableColumn fx:id="colStId" prefWidth="95.0" text="Student ID" />
-            <TableColumn fx:id="colStdName" prefWidth="110.0" text="Student Name" />
-            <TableColumn fx:id="s" prefWidth="104.0" text="Room ID" />
-            <TableColumn fx:id="colRoomType" prefWidth="122.0" text="Room Type" />
-            <TableColumn fx:id="colStatus" prefWidth="94.0" text="Status" />
-         </columns>
-      </TableView>
       <Text fill="#321268" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D24 Hostel - All Reservation" textAlignment="RIGHT" wrappingWidth="371.13671875">
          <font>
             <Font name="Franklin Gothic Medium" size="30.0" />
          </font>
       </Text>
+      <TableView fx:id="tableView" layoutX="112.0" layoutY="89.0" opacity="0.74" prefHeight="367.0" prefWidth="595.0">
+         <columns>
+            <TableColumn fx:id="colResId" prefWidth="103.0" text="Reservation Id" />
+            <TableColumn fx:id="colStId" prefWidth="88.0" text="Student ID" />
+            <TableColumn fx:id="colStdName" prefWidth="109.0" text="Student Name" />
+            <TableColumn fx:id="s" prefWidth="78.0" text="Room ID" />
+            <TableColumn fx:id="colRoomType" prefWidth="109.0" text="Room Type" />
+            <TableColumn fx:id="colStatus" prefWidth="107.0" text="Status" />
+         </columns>
+      </TableView>
+      <AnchorPane fx:id="paneStudent" layoutX="304.0" layoutY="102.0" opacity="0.84" prefHeight="429.0" prefWidth="230.0" style="-fx-background-color: #faf0e6; -fx-background-radius: 15;" visible="false">
+         <children>
+            <JFXTextField fx:id="txtStudentId" editable="false" layoutX="24.0" layoutY="28.0" prefHeight="25.0" prefWidth="181.0" promptText=" Student ID" />
+            <JFXTextField fx:id="txtName" editable="false" layoutX="25.0" layoutY="91.0" prefHeight="25.0" prefWidth="181.0" promptText=" Student Name" />
+            <JFXTextField fx:id="txtAddress" editable="false" layoutX="25.0" layoutY="151.0" prefHeight="25.0" prefWidth="181.0" promptText=" Address" />
+            <JFXTextField fx:id="txtContact" editable="false" layoutX="24.0" layoutY="215.0" prefHeight="25.0" prefWidth="181.0" promptText=" Contact Number" />
+            <JFXTextField fx:id="txtGender" editable="false" layoutX="25.0" layoutY="329.0" prefHeight="25.0" prefWidth="181.0" promptText="Gender" />
+            <JFXTextField fx:id="txtbthdy" editable="false" layoutX="24.0" layoutY="266.0" prefHeight="25.0" prefWidth="181.0" promptText="Birth Day" />
+            <JFXButton layoutX="71.0" layoutY="380.0" onAction="#closeOnAction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-radius: 10; -fx-background-color: red;" text="Close" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="53.0" layoutY="494.0" prefHeight="37.0" prefWidth="222.0" style="-fx-background-color: #e0ffff; -fx-background-radius: 10; -fx-border-color: d1bea8; -fx-border-radius: 10;">
+         <children>
+            <JFXComboBox fx:id="comboStudent" focusColor="LIGHTCYAN" layoutX="3.0" layoutY="-3.0" onKeyPressed="#onSelected" prefHeight="34.0" prefWidth="219.0" promptText="Room Reserve Student View" unFocusColor="LIGHTCYAN" />
+         </children>
+      </AnchorPane>
+      <JFXButton layoutX="660.0" onAction="#BackOnAction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-radius: 2; -fx-background-color: #9370db; -fx-border-color: black;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
